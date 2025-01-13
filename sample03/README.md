@@ -79,7 +79,7 @@ If you complete the initial task quickly, implement an additional custom action 
 from a JSON object.
 
 <strong>HINT:</strong> Export your workspace to a file. Next, store the content as a JSON object that you can use from
-your cod
+your own code
 
 ## Run the solution
 

@@ -1,5 +1,6 @@
 window.catex = {
     app: {
+        webservicesLabel: 'My Company Data',
         webservices: [
             {
                 id: "cs1-id",
@@ -73,7 +74,7 @@ function localDatasetsUSA(query) {
             title: "WFS service containing cities",
             type: "WFS",
             endpoint: "https://sampleservices.luciad.com/wfs",
-            layers: ["cities"],
+            layers: ["ns4:t_cities__c__1214"],
         },
         {
             id: "1.3",

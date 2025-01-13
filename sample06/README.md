@@ -88,8 +88,17 @@ https://sampleservices.luciad.com/wfs
 ![Curated assets](./sample06a.png "Curated assets")
 ![Curated assets form](./sample06b.png "Curated assets form")
 
-### Activity:
-Add more elements to the app.webservices array to define your own catalogs.
+### Activities:
+* Add more elements to the app.webservices array to define your own catalogs.
+* Rename the `Curated Assets` to a name of your choice, for instance `My Company Data`. Hint: use the hook `app.webservicesLabel`
+```javascript
+window.catex = {
+    app: {
+        webservicesLabel: 'My Company Data',
+        webservices: [...availableWebservices]
+    }
+}
+````
 
 ## Run the solution
 
