@@ -9,6 +9,7 @@ window.catex = {
         ]
     },
     app: {
+        navbarActionsLabel: "MY APP MENU",
         navbarActions: [
             {
                 label: "Trigger action 1",

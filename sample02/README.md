@@ -68,6 +68,17 @@ http://localhost:8080/catalogexplorer/home/
 window.catex.workspace.toastMessage({message: "", type: "info"});
 ```
 
+* Rename the `Actions` menu to 'My App Menu'. Hint, assign the new name as a string to the  'app.navbarActionsLabel' hook
+
+```javascript
+window.catex = {
+        app: {
+            navbarActionsLabel: "My new name",
+            navbarActions: [...menuItems]
+        }
+    }
+```    
+
 * Define a submenu and add two more entries inside the submenu
 
 <strong>Hint:</strong> Make sure the id is unique for every action. If the id is not unique, only the first command with the id
@@ -77,12 +88,18 @@ requested will be executed.
 children and pass an array of menu entries in the same way as you define normal navbar actions. See
 example below:
 ```JavaScript
-{
-    label: "My submenu",
-    title: "A test submenu",
-    id: "uid - sub - 01",
-    children: []
-}
+[
+    ...otherItems,
+    {
+        label: "My submenu",
+        title: "A test submenu",
+        id: "uid - sub - 01",
+        children: [
+            ...submenuItems
+        ]
+    },
+    ...otherItems
+]
 ```
 
 ## Run the solution
