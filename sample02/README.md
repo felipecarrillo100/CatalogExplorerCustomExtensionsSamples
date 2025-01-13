@@ -13,8 +13,8 @@ From the admin dashboard, accessed via the link:
 
 http://localhost:8080/catalogexplorer/admin
 
-Navigate to:
-Custom Extensions -> Create & Edit
+Let's reuse the code we wrote in sample01
+
 1. Copy the contents of the folder sample01 to sample02.
 2. Navigate to the sample02 folder and start the web server using:
 ```shell
