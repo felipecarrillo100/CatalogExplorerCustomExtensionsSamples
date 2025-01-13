@@ -48,6 +48,7 @@ window.catex = {
 4. Reload Catalog Explorer:
 
 http://localhost:8080/catalogexplorer/home/
+
 5. Open a WFS layer, for instance:
 
 https://sampleservices.luciad.com/wfs
