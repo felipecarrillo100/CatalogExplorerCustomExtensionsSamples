@@ -48,6 +48,7 @@ serve public -C
    
 <strong>HINT:</strong> The -C flag is important as it enables CORS, allowing the loading of code from a remote site.
 
+
 6. Create a file named index.js inside the public folder with the following content.****
 
 
