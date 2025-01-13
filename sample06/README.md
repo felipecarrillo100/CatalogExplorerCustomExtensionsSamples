@@ -22,7 +22,7 @@ serve public -C
 ```
 3. Edit the content of index.js inside the public folder with the following content:
 
-```JavaScript
+```javascript
 window.catex = {
     app: {
         webservices: [{
@@ -46,14 +46,14 @@ function localDatasets(query) {
             label: "Lucerna Panoramas",
             title: "PANORAMA",
             type: "PANORAMA",
-            endpoint: "https://sampledata.luciad.com/data/panoramics/LucernePegasus/cubemap_final.json ",
+            endpoint: "https://sampledata.luciad.com/data/panoramics/LucernePegasus/cubemap_final.json",
         },
         {
             id: "1.2",
             label: "Lucerna Mesh",
             title: "3D Tiles",
             type: "MESH",
-            endpoint: "https://sampledata.luciad.com/data/ogc3dtiles/LucerneAirborneMesh/tileset.json ",
+            endpoint: "https://sampledata.luciad.com/data/ogc3dtiles/LucerneAirborneMesh/tileset.json",
         }
     ]
     const matches = rows.filter(r => r.label.toLowerCase().indexOf(query.search.toLowerCase()) !== -1);
