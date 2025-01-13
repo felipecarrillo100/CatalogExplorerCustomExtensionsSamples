@@ -46,14 +46,15 @@ window.catex = {
 }
 ```
 4. Reload Catalog Explorer:
+
+http://localhost:8080/catalogexplorer/home/
 5. Open a WFS layer, for instance:
 
 https://sampleservices.luciad.com/wfs
 
-7. Open the layer City 125.
+6. Open the layer City 125.
 7. Select and right-click on one city.
 
-http://localhost:8080/catalogexplorer/home/
 
 ### Expected outcomes:
 * Catalog Explorer loads along with the custom extension.
