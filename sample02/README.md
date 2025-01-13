@@ -50,7 +50,7 @@ window.catex = {
     }
 }
 ```
-<strong>Hint:</strong> There is no need to modify the custom extension in the admin dashboard because the URL of the
+<strong>Hint:</strong> There is no need to modify the custom extension in the <strong>Admin Dashboard</strong> because the URL of the
 CDN is still the same as in sample01.
 
 4. Reload Catalog Explorer:
