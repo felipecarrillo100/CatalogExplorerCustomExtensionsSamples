@@ -8,10 +8,8 @@ This sample shows how to respond to mouse events happening on the main map
 ### Procedure
 
 From the admin dashboard, accessed via the link:
-<center>
 
-[http://localhost:8080/catalogexplorer/admin](http://localhost:8080/catalogexplorer/admin)
-</center>
+http://localhost:8080/catalogexplorer/admin
 
 Navigate to:
 Custom Extensions -> Create & Edit
@@ -27,10 +25,8 @@ Custom Extensions -> Create & Edit
    <strong>NOTE:</strong> This example serves our code using the NodeJS “serve” program, which is a NodeJS
    application available through npm. Ensure NodeJS is installed on your computer. If not, download
    and install it from the following URL:
-<center>
 
-   [https://nodejs.org/en/download/current](https://nodejs.org/en/download/current)
-</center>
+https://nodejs.org/en/download/current
 
    Once NodeJS is installed, install the “serve” package globally using npm:
 ```shell
@@ -70,10 +66,7 @@ window.catex = {
 8. Assign the Role “ROLE_CUSTOM_EXTENSIONS_TESTER” to the administrator user and login in as
    admin.
 
-<center>
-
-[http://localhost:8080/catalogexplorer/home/](http://localhost:8080/catalogexplorer/home/)
-</center>
+http://localhost:8080/catalogexplorer/home/
 
 ### Expected results:
    * Catalog Explorer loads alongside the custom extension.
