@@ -75,6 +75,7 @@ http://localhost:8080/catalogexplorer/home/
 6. Open a WFS layer, such as:
    
 https://sampleservices.luciad.com/wfs
+
 7. Within the layer, access City 125.
 8. Choose a city from the map, then right-click on it.
 
