@@ -71,7 +71,7 @@ window.catex.workspace.toastMessage({message: "", type: "info"});
 ```
 
 * Define a submenu and add two more entries inside the submenu
-* 
+
 <strong>Hint:</strong> Make sure the id is unique for every action. If the id is not unique, only the first command with the id
 requested will be executed.
 
