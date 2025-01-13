@@ -113,7 +113,7 @@ function TurfJSONURLCommand(algorthm, featureCollection, label) {
 }
 ```
 <strong>Highlight:</strong> Catalog explorer by default uses HTTP method "GET" when making call to an API, however when you need to transfer 
-very large amounts of data the method "POST" is more suitable. Since we need to transfer the entire collection using POST is the correct solution.
+very large amounts of data the method "POST" is more suitable. Since in this example we need to transfer the entire collection using POST is the correct solution and we pass the collection as part of the body.
 
 9. Run the backend:
 ```shell
