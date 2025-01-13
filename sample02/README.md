@@ -9,10 +9,6 @@ array. Adding actions to the navbar is as simple as appending new elements to th
 
 ### Procedure
 
-From the admin dashboard, accessed via the link:
-
-http://localhost:8080/catalogexplorer/admin
-
 Let's reuse the code we wrote in sample01
 
 1. Copy the contents of the folder sample01 to sample02.
