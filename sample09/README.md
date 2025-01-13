@@ -25,6 +25,8 @@ hints on the necessary changes required to use it for debugging and compiling a 
 To create a custom extension, you need to configure your webpack to bundle all JavaScript or TypeScript
 code into a single index.js file and bundle all styles into a single index.css file.
 
+![Webpack](./webpack.png "Webpack")
+
 To use the webpack development server we need to make sure the bundler exposes the in-memory
 index.js and index.css in full together with the source maps. We also need to make sure that the CORS is
 enabled.
