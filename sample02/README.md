@@ -59,6 +59,8 @@ http://localhost:8080/catalogexplorer/home/
 * Two new entries are added to the Actions menu.
 * Actions are triggered upon clicking the menu items.
 
+![Actions Menu](./sample02.png "Actions Menu")
+
 ### Activities:
 * Instead of using the alert function, use the toast message API:
 

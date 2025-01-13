@@ -84,6 +84,9 @@ https://sampleservices.luciad.com/wfs
 * The ability to offer multiple datasets.
 * Upon clicking on a dataset, a form will appear, presenting a list of all available assets within that dataset.
 
+![Curated assets](./sample06a.png "Curated assets")
+![Curated assets form](./sample06b.png "Curated assets form")
+
 ### Activity:
 Add more elements to the app.webservices array to define your own catalogs.
 
