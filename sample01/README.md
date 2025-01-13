@@ -78,10 +78,10 @@ http://localhost:8080/catalogexplorer/home/
    Create actions for map.onMapMove and map.onMousePoint that print the message received to the
    screen.
 
-<strong>Hint:<strong> You can always refer to the Typescript file “Catext.ts” to see the definition of the methods the syntax
+<strong>Hint:</strong> You can always refer to the Typescript file “Catext.ts” to see the definition of the methods the syntax
    and parameters received and returned.
 
-<strong>Hint:<strong> map.onMapMove and map.onMousePoint are very similar to map.onMouseClick. You could
+<strong>Hint:</strong> map.onMapMove and map.onMousePoint are very similar to map.onMouseClick. You could
    simply copy and paste the code and adapt the code to your needs.
 
 
