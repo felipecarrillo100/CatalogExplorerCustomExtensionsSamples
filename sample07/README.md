@@ -37,7 +37,7 @@ const path = require('path')
 const express = require('express');
 const cors = require('cors');
 const turf = require('@turf/turf');
-const PORT = 5000;
+const PORT = 3000;
 const app = express();
 app.use(express.json())
 app.use(cors());
@@ -100,7 +100,7 @@ function TurfJSONURLCommand(algorthm, featureCollection, label) {
             "editable": false,
          },
          "model": {
-            url: `http://localhost:5000/api/turf/${algorthm}`,
+            url: `http://localhost:3000/api/turf/${algorthm}`,
             method: "POST",
             body: JSON.stringify(featureCollection),
             format: "GeoJSON",
