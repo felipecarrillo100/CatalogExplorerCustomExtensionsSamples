@@ -110,9 +110,9 @@ function TomTomAPIURLCommand(point1, point2, label) {
 
 http://localhost:8080/catalogexplorer/home/
 
-5. Open a WFS layer, such as:
+6. Open a WFS layer, such as:
 https://sampleservices.luciad.com/wfs
-6. Next, open the layer named City 125. Select and right-click on two cities of your choice.
+7. Next, open the layer named City 125. Select and right-click on two cities of your choice.
    This will open a context menu. Select TomTom Route, this will trigger a call to the Tomtom API to determine a route between the selected cities.
 
 
