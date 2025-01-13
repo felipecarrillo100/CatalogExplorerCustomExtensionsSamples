@@ -42,74 +42,74 @@ const app = express();
 app.use(express.json())
 app.use(cors());
 app.use('/', express.static(path.join(__dirname, 'public')));
-app.post("/api/turf/29lgorit", (req, res) => {
-    const collection = req.body;
-    const bbox = turf.bbox(collection);
-    const options = {
-        bbox
-    };
-    const voronoiPolygons = turf.voronoi(collection, options);
-    res.json(voronoiPolygons);
+app.post("/api/turf/voronoi", (req, res) => {
+   const collection = req.body;
+   const bbox = turf.bbox(collection);
+   const options = {
+      bbox
+   };
+   const voronoiPolygons = turf.voronoi(collection, options);
+   res.json(voronoiPolygons);
 });
 app.listen(PORT, () => {
-    console.log(`App Listening on port ${PORT}`)
+   console.log(`App Listening on port ${PORT}`)
 });
 ```
 7. Inside sample07 folder create public/index.js with the following content
 ```javascript
 window.catex = {
-    featureLayer: {
-        onMultiFeatureSelect: [{
-            label: "Voronoi",
-            title: "Calculate voronoi",
-            action: function(o, callback) {
-                if (typeof callback === "function") {
-                    if (o.features) {
-                        if (o.features.length > 1) {
-                            const featureCollection = {
-                                type: "FeatureCollection",
-                                features: o.features.map(f => ({
-                                    "type": "Feature",
-                                    "properties": {},
-                                    "geometry": {
-                                        "type": "Point",
-                                        "coordinates": [f.shape.focusPoint.x, f.shape.focusPoint.y]
-                                    }
-                                }))
-                            }
-                            const newCommand =
-                                TurfJSONURLCommand('voronoi', featureCollection, 'Voronoi');
-                            window.catex.workspace.emitCommand(newCommand);
-                        }
-                    }
-                }
+   featureLayer: {
+      onMultiFeatureSelect: [{
+         label: "Voronoi",
+         title: "Calculate voronoi",
+         action: function(o, callback) {
+            if (typeof callback === "function") {
+               if (o.features) {
+                  if (o.features.length > 1) {
+                     const featureCollection = {
+                        type: "FeatureCollection",
+                        features: o.features.map(f => ({
+                           "type": "Feature",
+                           "properties": {},
+                           "geometry": {
+                              "type": "Point",
+                              "coordinates": [f.shape.focusPoint.x, f.shape.focusPoint.y]
+                           }
+                        }))
+                     }
+                     const newCommand =
+                             TurfJSONURLCommand('voronoi', featureCollection, 'Voronoi');
+                     window.catex.workspace.emitCommand(newCommand);
+                  }
+               }
             }
-        }, ]
-    }
+         }
+      }, ]
+   }
 }
 
 function TurfJSONURLCommand(algorthm, featureCollection, label) {
-    return {
-        "action": 10,
-        "parameters": {
-            "action": "MemoryFeatureLayer",
-            "autozoom": true,
-            "layer": {
-                "label": label,
-                "selectable": true,
-                "editable": false,
-            },
-            "model": {
-                url: `http://localhost:5000/api/turf/${algorthm}`,
-                method: "POST",
-                body: JSON.stringify(featureCollection),
-                format: "GeoJSON",
-                requestHeaders: {
-                    "Content-Type": "application/json"
-                }
+   return {
+      "action": 10,
+      "parameters": {
+         "action": "MemoryFeatureLayer",
+         "autozoom": true,
+         "layer": {
+            "label": label,
+            "selectable": true,
+            "editable": false,
+         },
+         "model": {
+            url: `http://localhost:5000/api/turf/${algorthm}`,
+            method: "POST",
+            body: JSON.stringify(featureCollection),
+            format: "GeoJSON",
+            requestHeaders: {
+               "Content-Type": "application/json"
             }
-        }
-    }
+         }
+      }
+   }
 }
 ```
 <strong>Highlight:</strong> Catalog explorer by default uses HTTP method "GET" when making call to an API, however when you need to transfer 
