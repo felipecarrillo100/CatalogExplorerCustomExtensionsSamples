@@ -1,5 +1,5 @@
 # CatalogExplorer Custom Extensions
-## My CDN first Application
+## My  first CDN Application
 
 This sample illustrates how to create your first Custom Extension.
 
