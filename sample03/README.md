@@ -64,7 +64,7 @@ http://localhost:8080/catalogexplorer/home/
 
 ### Activity:
 * Update the code to enable defining custom actions for opening the three layers supported by the
-TomTom API. Create a unique custom action for each layer.
+TomTom API [ "basic", "hybrid", "labels" ]. Create a unique custom action for each layer.
 
 <strong>HINT:</strong> Include the layer name as a parameter in the function that generates the command. Refer to the
 TomTom documentation for the available layer names:
