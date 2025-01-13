@@ -20,7 +20,7 @@ In this exercise, we’ll implement an action in response to the featureLayer.on
 Let's reuse the code we wrote in sample04
 
 1. Copy the contents of the folder sample04 to sample05
-2. Navigate to the sample0 folder and start the web server using:
+2. Navigate to the sample05 folder and start the web server using:
 ```shell
 serve public -C
 ```
