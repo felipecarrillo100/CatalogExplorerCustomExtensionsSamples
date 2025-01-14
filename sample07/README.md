@@ -133,8 +133,8 @@ https://sampleservices.luciad.com/wfs
 
 ### Expected outcomes:
 * Catalog Explorer loads together with the custom extension.
-* When all cities selected, on right click a context menu appear with Voronoi.
-* Voronoi areas are calculated and display.
+* When all cities selected, on right-click a context-menu appear with and entry `Voronoi`.
+* On calling Voronoi, areas are calculated and displayed in the map.
 
 ### Activity:
 * In this example we implemented the Voronoi calculation for a collection of points selected using the context-menu. In this activity, you need to modify the code to add a new action that allows you to calculate a Bezier curve for the points currently selected.
