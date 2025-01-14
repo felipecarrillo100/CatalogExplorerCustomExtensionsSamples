@@ -166,8 +166,65 @@ app.post("/api/turf/bezier", (req, res) => {
    res.json(bezierLine);
 });
 ```
-### Optional Activities:
-In sample06 we learned how to implement `Curated Assets` in the front end.  
+### Optional Activity:
+
+In sample06 we learned how to implement `Curated Assets` in the front end. A very powerful use-case you is to store your `cCrated assets` in a database and expose them as a webservice that your users can interact with using the UI. 
+
+As part of this optional activity try to move as much code as possible to the backend, storing, searching and paginating must be done server side. Keep it simple, instead of storing in a database you can store the list in memory similarly to sample06 but at the backend.
+
+Try it first on your own. In case you are not able to complete it yourself, look at the solution to this exercise.
+
+<strong>Hint:</strong>  You can implement the call to the API using fetch and pass the search and pagination parameters in the query string:
+
+```javascript
+function remoteDatasets(service, params) {
+    return new Promise(resolve=>{
+        const queryString = Object.keys(params).map(key => key + '=' + params[key]).join('&');
+        const request = `http://localhost:3000/api/${service}?${queryString}`
+        fetch(request).then(response=>{
+            if (response.ok) {
+                response.json().then(data=>resolve(data))
+            }
+        })
+    })
+}
+```
+Then you need to implement the API entry in your backend.
+```javascript
+app.get("/api/lucerna", (req, res) => {
+    const query = req.query;
+    const rows = [
+        {
+            id: "1.1",
+            label: "Lucerna Panoramas",
+            title: "PANORAMA",
+            type: "PANORAMA",
+            endpoint: "https://sampledata.luciad.com/data/panoramics/LucernePegasus/cubemap_final.json",
+        },
+        {
+            id: "1.2",
+            label: "Lucerna Mesh",
+            title: "3D Tiles",
+            type: "MESH",
+            endpoint: "https://sampledata.luciad.com/data/ogc3dtiles/LucerneAirborneMesh/tileset.json",
+        },
+        ...addMoreRows  
+    ]
+    const matches = rows.filter(r=>r.label.toLowerCase().indexOf(query.search.toLowerCase())!==-1);
+    const pageNumber = Number(query.pageNumber);
+    const pageSize = Number(query.pageSize);
+    const paginated = matches.sort((a,b)=>a>b?1:a<b?-1:0).slice(pageNumber * pageSize, (pageNumber+1) * pageSize);
+    const results = {
+        rows: paginated,
+        matches: matches.length,
+        total: rows.length
+    }
+    res.json(results);
+});
+
+```
+
+
 
 ## Run the solution
 
