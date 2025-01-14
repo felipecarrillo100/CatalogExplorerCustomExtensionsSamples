@@ -54,7 +54,7 @@ serve public -C
 
 
 ```JavaScript
-// Image served from a specific URL location
+// The URL where the logo is located in image format
 const logoUrl = "http://localhost:3000/new_logo.png";
 
 window.catex = {
