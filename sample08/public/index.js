@@ -1,3 +1,5 @@
+const TomTomKey = "A9R38rS8rPA6NS1ARfwn24mgEMlCCQ9k";
+
 window.catex = {
     app: {
         navbarActions: [
@@ -10,58 +12,65 @@ window.catex = {
                 }
             },
             {
-                label: "Tomtom layers",
-                title: "Open tom tom layers",
-                id: "uid-sub01",
+                label: "TomTom",
+                title: "Demo of TomTOM API Integration",
+                id: "uid02",
                 children: [
                     {
-                        label: "Open Tomtom layer basic",
-                        title: "Open a TMS layer from the tomtom api",
-                        id: "uid10",
-                        action: (o, callback)=>{
-                            window.catex.workspace.emitCommand(tomtomLayerCommand("basic"))
-                        }
+                        label: "Tomtom Imagery",
+                        title: "Open TomTom Imagery Layers",
+                        id: "uid-sub01",
+                        children: [
+                            {
+                                label: "Basic",
+                                title: "Open a TMS layer 'basic' from the tomtom api",
+                                id: "uid10",
+                                action: (o, callback)=>{
+                                    window.catex.workspace.emitCommand(tomtomLayerCommand("basic"))
+                                }
+                            },
+                            {
+                                label: "Hybrid",
+                                title: "Open a TMS layer 'hybrid' from the tomtom api",
+                                id: "uid11",
+                                action: (o, callback)=>{
+                                    window.catex.workspace.emitCommand(tomtomLayerCommand("hybrid"))
+                                }
+                            },
+                            {
+                                label: "Labels With Transparency",
+                                title: "Open a TMS layer 'labels' from the tomtom api",
+                                id: "uid12",
+                                action: (o, callback)=>{
+                                    window.catex.workspace.emitCommand(tomtomLayerCommand("labels"))
+                                }
+                            },
+                        ]
                     },
                     {
-                        label: "Open Tomtom layer hybrid",
-                        title: "Open a TMS layer from the tomtom api",
-                        id: "uid11",
-                        action: (o, callback)=>{
-                            window.catex.workspace.emitCommand(tomtomLayerCommand("hybrid"))
-                        }
-                    },
-                    {
-                        label: "Open Tomtom layer labels",
-                        title: "Open a TMS layer from the tomtom api",
-                        id: "uid12",
-                        action: (o, callback)=>{
-                            window.catex.workspace.emitCommand(tomtomLayerCommand("labels"))
-                        }
+                        label: "Tomtom Routing",
+                        title: "TomTom point to point routing",
+                        id: "uid-sub02",
+                        children: [
+                            {
+                                label: "TomTom with Gazetteer",
+                                title: "Calculates a route between two points using the Gazetteer",
+                                id: "uid021",
+                                action: (o, callback)=>{
+                                    TomTomRoutingGazetteer();
+                                }
+                            },
+                            {
+                                label: "TomTom Points",
+                                title: "Calculates a route between two points using the Pick Point Widget",
+                                id: "uid022",
+                                action: (o, callback)=>{
+                                    TomTomRoutingPoints();
+                                }
+                            },
+                        ],
                     },
                 ]
-            },
-            {
-                label: "Tomtom Routing",
-                title: "Open tom tom layers",
-                id: "uid-sub02",
-                children: [
-                    {
-                        label: "TomTom Gazetteer",
-                        title: "Open a tomtom",
-                        id: "uid021",
-                        action: (o, callback)=>{
-                            TomTomRoutingGazetteer();
-                        }
-                    },
-                    {
-                        label: "TomTom Points",
-                        title: "Open a tomtom",
-                        id: "uid022",
-                        action: (o, callback)=>{
-                            TomTomRoutingPoints();
-                        }
-                    },
-                ],
             },
         ]
     },
@@ -87,7 +96,6 @@ window.catex = {
 }
 
 function tomtomLayerCommand(layerName)  {
-    const tomtomkey = "A9R38rS8rPA6NS1ARfwn24mgEMlCCQ9k";
     return {
         "action": 10,
         "parameters": {
@@ -96,7 +104,7 @@ function tomtomLayerCommand(layerName)  {
                 "label": `Tomtom ${layerName}`,
             },
             "model": {
-                "baseURL": `https://{s}.api.tomtom.com/map/1/tile/${layerName}/main/{z}/{x}/{-y}.png?key=${tomtomkey}&tileSize=256`,
+                "baseURL": `https://{s}.api.tomtom.com/map/1/tile/${layerName}/main/{z}/{x}/{-y}.png?key=${TomTomKey}&tileSize=256`,
                 "levelCount": 21,
                 "subdomains": [
                     "a",
@@ -280,8 +288,7 @@ function tomtomInputsPoints() {
 }
 
 function TomTomAPIURLCommand (point1, point2, label, options) {
-    const tomtomkey = "A9R38rS8rPA6NS1ARfwn24mgEMlCCQ9k";
-    const url = `https://api.tomtom.com/routing/1/calculateRoute/${point1[0]},${point1[1]}:${point2[0]},${point2[1]}/json?&vehicleHeading=90&sectionType=traffic&report=effectiveSettings&routeType=eco&traffic=true&avoid=unpavedRoads&travelMode=${options.travelMode}&vehicleMaxSpeed=120&vehicleCommercial=false&vehicleEngineType=combustion&key=${tomtomkey}`;
+    const url = `https://api.tomtom.com/routing/1/calculateRoute/${point1[0]},${point1[1]}:${point2[0]},${point2[1]}/json?&vehicleHeading=90&sectionType=traffic&report=effectiveSettings&routeType=eco&traffic=true&avoid=unpavedRoads&travelMode=${options.travelMode}&vehicleMaxSpeed=120&vehicleCommercial=false&vehicleEngineType=combustion&key=${TomTomKey}`;
     return {
         "action": 10,
         "parameters": {
