@@ -1,9 +1,32 @@
-// Define the type of Window.catex object
+/*
+ * Custom Extensions API Version 1.2.0
+ *
+ * Copyright (c) 2024-2030 Hexagon All Rights Reserved.
+ *
+ * Hexagon grants you ("Licensee") a non-exclusive, royalty free, license to use,
+ * modify and redistribute this file software in source and binary code form,
+ * provided that i) this copyright notice and license appear on all copies of
+ * the software; and ii) Licensee does not utilize the software in a manner
+ * which is disparaging to Hexagon.
+ *
+ * This software is provided "AS IS," without a warranty of any kind. ALL
+ * EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND WARRANTIES, INCLUDING ANY
+ * IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE OR
+ * NON-INFRINGEMENT, ARE HEREBY EXCLUDED. HEXAGON AND ITS LICENSORS SHALL NOT BE
+ * LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING
+ * OR DISTRIBUTING THE SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL HEXAGON OR ITS
+ * LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT,
+ * INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER
+ * CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF THE USE OF
+ * OR INABILITY TO USE SOFTWARE, EVEN IF HEXAGON HAS BEEN ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGES.
+ */
+
 declare global {
     interface Window { catex: Catex; }
 }
 
-// A CatexCompanionDataTransformer is used to convert data from one format to another
+// A CatexCompanionDataTransformer is used to convert data from one format to another.
 export interface CatexCompanionDataTransformer {
     name: string;
     extensions?: string;
@@ -13,7 +36,7 @@ export interface CatexCompanionDataTransformer {
     target?: string;
 }
 
-// CatexCompanionDataTransformerCheck provides a mechanism to validate the input data
+// CatexCompanionDataTransformerCheck provides a mechanism to validate the input data.
 interface CatexCompanionDataTransformerCheck {
     filename: string;
     content?: string;
@@ -21,7 +44,7 @@ interface CatexCompanionDataTransformerCheck {
     contentLength?: number;
 }
 
-// CustomServiceQueryOptions provides a data structure to perform a query
+// CustomServiceQueryOptions provides a data structure to perform a query.
 export interface CustomServiceQueryOptions {
     search: string;
     pageSize: number;
@@ -30,7 +53,7 @@ export interface CustomServiceQueryOptions {
     sortBy?: string;
 }
 
-// CustomServiceQueryResult: Provides a data structure to return the results of a query
+// CustomServiceQueryResult: Provides a data structure to return the results of a query.
 export interface CustomServiceQueryResult {
     rows: any;
     matches: number;
@@ -70,8 +93,8 @@ export interface CustomWebServiceResult {
     matches: number;
     total: number;
 }
-// NavBarEntryWebservice: Provides a data structure to define data Webs service that provide data
 
+// NavBarEntryWebservice: Provides a data structure to define Web service that provides data.
 export interface NavBarEntryWebservice {
     label: string;
     title: string;
@@ -79,7 +102,7 @@ export interface NavBarEntryWebservice {
     action: (o: CustomServiceQueryOptions, callback: (entries:CustomWebServiceResult)=>void)=>void;
 }
 
-// NavBarEntryCustomActions: Provides a data structure to define new actions to be added to the navbar
+// NavBarEntryCustomActions: Provides a data structure to define new actions to be added to the navbar.
 export type NavBarEntryCustomActions = NavBarEntryCustomEntry | NavBarEntryCustomSubMenu | NavBarEntryCustomDivider
 export interface NavBarEntryCustomDivider {
     divider: boolean;
@@ -98,7 +121,7 @@ export interface NavBarEntryCustomSubMenu {
     children: NavBarEntryCustomActions[];
 }
 
-// MenuEntryFeatureSelect: Defines the data structure to create actions in response to Single Feature selected
+// MenuEntryFeatureSelect: Defines the data structure to create actions in response to a single feature selected.
 interface MenuEntryFeatureSelect {
     label: string;
     title: string;
@@ -106,7 +129,7 @@ interface MenuEntryFeatureSelect {
     action: (parameters: {feature: any; model: any; layer: any;}, callback: (properties: {[key: string]: any})=>void) => void;
 }
 
-// MenuEntryFeatureSelect: Defines the data structure to create actions in response to Multiple Feature selected
+// MenuEntryFeatureSelect: Defines the data structure to create actions in response to multiple selected features.
 interface MenuEntryMultiFeatureSelect {
     label: string;
     title: string;
@@ -160,7 +183,7 @@ export enum PanelTarget {
 }
 interface CreateJSONSchemaFormOptions {
     panel?: PanelTarget;
-    onChange?: (formData: any)=> void;
+    onChange?: (formData: any, formExt?: any)=> void;
     onCancel?: ()=>void;
     onSuccess?:(formData: any) => void;
 }
@@ -218,7 +241,9 @@ export interface Catex {
         getUserInfo?:() => Promise<any>;
         onAppReady?: () => void;
         navbarActions?: NavBarEntryCustomActions[];
+        navbarActionsLabel?: string; // Allows changing the navbar title
         webservices?: NavBarEntryWebservice[];
+        webservicesLabel?: string; // Allows changing the navbar title for Curated datasets
     };
     workspace?: {
         emitCommand: (command: any) => void;
@@ -280,7 +305,7 @@ export interface Catex {
     }
 }
 
-// onMouseClickEvent: Defines the data structure to create actions in response to OnMouseClick on map
+// onMouseClickEvent: Defines the data structure to create actions in response to OnMouseClick event in the map.
 interface onMouseClickEvent {
     action: (o: {
         point: any;
@@ -290,12 +315,12 @@ interface onMouseClickEvent {
     }, callback: any) => void;
 }
 
-// onMapMoveEvent: Defines the data structure to create actions in response to OnMapMove
+// onMapMoveEvent: Defines the data structure to create actions in response to OnMapMove event.
 interface onMapMoveEvent {
     action: (o: {bounds: any; map: any}, callback: any) => void;
 }
 
-// onMousePointEvent: Defines the data structure to create actions in response to onMousePoint
+// onMousePointEvent: Defines the data structure to create actions in response to onMousePoint event.
 interface onMousePointEvent {
     action: (o: {point: any; map: any}, callback: any) => void;
 }
