@@ -20,6 +20,12 @@ app.post("/api/turf/voronoi", (req, res) => {
     res.json(voronoiPolygons);
 });
 
+app.post("/api/turf/bezier", (req, res) => {
+    const lineString = req.body;
+    const voronoiPolygons = turf.bezier(lineString);
+    res.json(voronoiPolygons);
+});
+
 app.get("/api/usa", (req, res) => {
     const query = req.query;
     const rows = [

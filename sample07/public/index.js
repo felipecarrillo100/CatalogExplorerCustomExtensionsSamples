@@ -49,12 +49,11 @@ window.catex = {
         onMultiFeatureSelect: [
             {
                 label: "Voronoi",
-                title: "Calculate voronoi",
+                title: "Calculates voronoi",
                 action: function(o, callback) {
                     if (typeof callback === "function") {
                         if (o.features) {
                             if (o.features.length>1) {
-
                                 const featureCollection = {
                                     type: "FeatureCollection",
                                     features: o.features.map(f=>({
@@ -62,7 +61,7 @@ window.catex = {
                                         "properties":{},
                                         "geometry":{
                                             "type":"Point",
-                                            "coordinates":[f.shape.focusPoint.x,f.shape.focusPoint.y]
+                                            "coordinates":[f.shape.focusPoint.x, f.shape.focusPoint.y]
                                         }
                                     }))
                                 }
@@ -73,12 +72,33 @@ window.catex = {
                     }
                 }
             },
+            {
+                label: "Bezier",
+                title: "Calculates bezier curve of points",
+                action: function(o, callback) {
+                    if (typeof callback === "function") {
+                        if (o.features) {
+                            if (o.features.length>1) {
+                                const featureLineString = {
+                                    "type":"Feature",
+                                    "properties":{},
+                                    "geometry":{
+                                        "type":"LineString",
+                                        "coordinates":o.features.map(f=>[f.shape.focusPoint.x, f.shape.focusPoint.y])
+                                    }
+                                }
+                                const newCommand = TurfJSONURLCommand('bezier', featureLineString, 'Bezier');
+                                window.catex.workspace.emitCommand(newCommand);
+                            }
+                        }
+                    }
+                }
+            },
         ]
     }
-
 }
 
-function TurfJSONURLCommand(algorthm, featureCollection, label) {
+function TurfJSONURLCommand(algorthm, bodyContent, label) {
     return {
         "action": 10,
         "parameters": {
@@ -92,7 +112,7 @@ function TurfJSONURLCommand(algorthm, featureCollection, label) {
             "model": {
                 url: `http://localhost:3000/api/turf/${algorthm}`,
                 method: "POST",
-                body: JSON.stringify(featureCollection),
+                body: JSON.stringify(bodyContent),
                 format: "GeoJSON",
                 requestHeaders: {
                     "Content-Type": "application/json"

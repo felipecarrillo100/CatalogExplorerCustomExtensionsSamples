@@ -89,7 +89,7 @@ window.catex = {
    }
 }
 
-function TurfJSONURLCommand(algorthm, featureCollection, label) {
+function TurfJSONURLCommand(algorthm, bodyContent, label) {
    return {
       "action": 10,
       "parameters": {
@@ -103,7 +103,7 @@ function TurfJSONURLCommand(algorthm, featureCollection, label) {
          "model": {
             url: `http://localhost:3000/api/turf/${algorthm}`,
             method: "POST",
-            body: JSON.stringify(featureCollection),
+            body: JSON.stringify(bodyContent),
             format: "GeoJSON",
             requestHeaders: {
                "Content-Type": "application/json"
@@ -135,6 +135,38 @@ https://sampleservices.luciad.com/wfs
 * Catalog Explorer loads together with the custom extension.
 * When all cities selected, on right click a context menu appear with Voronoi.
 * Voronoi areas are calculated and display.
+
+### Activities:
+* In this example we implemented Voronoi calculation. Modify the code to add a new action that allows you to calculate a Bezier curve for the points selected.
+
+<strong>Hint:</strong> The Voronoi API expects a collection of features, the Bezier curve expects a Feature LineString. Look at the following code snippet:
+
+```javascript
+if (o.features) {
+   if (o.features.length>1) {
+      const featureLineString = {
+         "type":"Feature",
+         "properties":{},
+         "geometry":{
+            "type":"LineString",
+            "coordinates":o.features.map(f=>[f.shape.focusPoint.x,f.shape.focusPoint.y])
+         }
+      }
+      const newCommand = TurfJSONURLCommand('bezier', featureLineString, 'Bezier');
+      window.catex.workspace.emitCommand(newCommand);
+   }
+}
+```
+On the backend you will require to add a new API entry
+
+```javascript
+app.post("/api/turf/bezier", (req, res) => {
+   const lineString = req.body;
+   const voronoiPolygons = turf.bezier(lineString);
+   res.json(voronoiPolygons);
+});
+```
+* Re
 
 
 ## Run the solution
