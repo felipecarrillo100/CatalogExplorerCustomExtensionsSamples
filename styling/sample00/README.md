@@ -33,7 +33,7 @@ window.catex = {
       onAppReady: ()=> {
          const logoElement = document.querySelector("img.navbar-brandIcon");
          if (logoElement && logoElement.tagName === 'IMG') {
-            logoElement.src = logoUrl;
+            logoElement.src = logoBase64;
          }
       },
    }
