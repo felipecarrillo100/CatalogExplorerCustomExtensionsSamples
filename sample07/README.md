@@ -137,9 +137,9 @@ https://sampleservices.luciad.com/wfs
 * Voronoi areas are calculated and display.
 
 ### Activities:
-* In this example we implemented Voronoi calculation. Modify the code to add a new action that allows you to calculate a Bezier curve for the points selected.
+* In this example we implemented the Voronoi calculation for a collection of points selected using the context-menu. In this activity, you need to modify the code to add a new action that allows you to calculate a Bezier curve for the points currently selected.
 
-<strong>Hint:</strong> The Voronoi API expects a collection of features, the Bezier curve expects a Feature LineString. Look at the following code snippet:
+<strong>Hint:</strong> The Voronoi API expects a collection of features, the Bezier curve expects a Feature LineString, you will need to modify the code accordingly. Look at the following code snippet:
 
 ```javascript
 if (o.features) {
@@ -166,6 +166,8 @@ app.post("/api/turf/bezier", (req, res) => {
    res.json(bezierLine);
 });
 ```
+To test this feature, select 2 or more points and right-click to display the context menu and select Bezier. 
+
 ### Optional Activity:
 
 In sample06 we learned how to implement `Curated Assets` in the front end. A very powerful use-case you is to store your `cCrated assets` in a database and expose them as a webservice that your users can interact with using the UI. 
@@ -223,8 +225,6 @@ app.get("/api/lucerna", (req, res) => {
 });
 
 ```
-
-
 
 ## Run the solution
 
