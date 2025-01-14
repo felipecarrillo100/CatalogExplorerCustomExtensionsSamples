@@ -300,5 +300,5 @@ Change the colors of Catalog Explorer to the colors of your choice
 
 Change the logo of Catalog Explorer for one of your choice.
 
-<strong>Hint:</strong> Go to the JavaScript Editor tab  and change the source of the logo. If you don't know how to encode an image in base64 you can easily convert any image at the following website
+<strong>Hint:</strong> Go to the JavaScript Editor tab  and change the set your logo in base4 encoding. If you don't know how to encode an image to base64, you can easily convert any image at the following website:
 https://www.base64-image.de/
