@@ -25,13 +25,13 @@ function MyVanillaForm(element: HTMLBRElement, handlers: CreateCustomFormRenderH
             window.catex.workspace.toastMessage({message:"Operations cancelled by user", type: ToastMessageType.warning});
         },
         onSubmit: ()=>{
-            window.catex.workspace.toastMessage({message:"Form submited", type: ToastMessageType.success});
             const firstname = document.getElementById("input-ui-first") as HTMLInputElement;
             const lastname = document.getElementById("input-ui-lastname") as HTMLInputElement;
             const formData = {
                 firstname: firstname.value,
                 lastname: lastname.value
             }
+            window.catex.workspace.toastMessage({message:`Hello ${formData.firstname}`, type: ToastMessageType.success});
             console.log(formData);
         }
     })
