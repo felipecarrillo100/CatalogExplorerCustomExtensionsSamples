@@ -136,7 +136,7 @@ https://sampleservices.luciad.com/wfs
 * When all cities selected, on right click a context menu appear with Voronoi.
 * Voronoi areas are calculated and display.
 
-### Activities:
+### Activity:
 * In this example we implemented the Voronoi calculation for a collection of points selected using the context-menu. In this activity, you need to modify the code to add a new action that allows you to calculate a Bezier curve for the points currently selected.
 
 <strong>Hint:</strong> The Voronoi API expects a collection of features, the Bezier curve expects a Feature LineString, you will need to modify the code accordingly. Look at the following code snippet:
