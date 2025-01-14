@@ -19,11 +19,13 @@ Let's reuse the code we wrote in sample05
 ```shell
    npm init
 ```
-4. Installed the required dependencies for your node project
+4. Installed the required dependencies for our node project.
+
+The Library `express` is used to create web applications and APIs in NodeJS, while `cors` is a library that easily enables CORS in our application
 ```shell
    npm install express cors
 ```
-
+Library `@turf/turf` provides many geospatial operations
 ```shell
    npm install @turf/turf
 ```
