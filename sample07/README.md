@@ -23,14 +23,13 @@ Let's reuse the code we wrote in sample05
 ```shell
    npm install express cors
 ```
-   a. Create a file public/index.js and reuse the code of exercise 06 when possible.
-   b. Create a file ./index.js and add the code for your node application.
+
 ```shell
    npm install @turf/turf
 ```
 5. In the sample code below, a REST endpoint is created to receive the collection of points in a POST
    request. The collection of points is a JSON array in the body of the HTTP request.
-6. Inside sample07 folder create index.js with the following content
+6. Inside sample07 folder create `index.js` with the following content
 
 ```javascript
 const path = require('path')
@@ -55,7 +54,7 @@ app.listen(PORT, () => {
    console.log(`App Listening on port ${PORT}`)
 });
 ```
-7. Inside sample07 folder create public/index.js with the following content
+7. Inside sample07 folder create `public/index.js` with the following content
 ```javascript
 window.catex = {
    featureLayer: {
@@ -112,8 +111,8 @@ function TurfJSONURLCommand(algorthm, featureCollection, label) {
    }
 }
 ```
-<strong>Highlight:</strong> Catalog explorer by default uses HTTP method "GET" when making call to an API, however when you need to transfer 
-very large amounts of data the method "POST" is more suitable. Since in this example we need to transfer the entire collection using POST is the correct solution and we pass the collection as part of the body.
+<strong>Note:</strong> Catalog Explorer by default uses the HTTP method "GET" when making calls to an API. However, when you need to transfer 
+large amounts of data, the method "POST" is more suitable. Since, in this example, we need to transfer the entire collection of points, using POST is the correct solution, and we pass the collection content as part of the body.
 
 9. Run the backend:
 ```shell
