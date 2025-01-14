@@ -126,6 +126,7 @@ http://localhost:8080/catalogexplorer/home/
 10. Open a WFS layer, such as:
 
 https://sampleservices.luciad.com/wfs
+
 11. Open the layer City 125.
 12. Select all the cities. Call the Voronoi API to calculate the Voronoi areas for all the cities in the USA
 
