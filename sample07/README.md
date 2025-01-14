@@ -137,8 +137,14 @@ https://sampleservices.luciad.com/wfs
 
 ## Run the solution
 
+Install the dependencies
 ```shell
-serve public -C
+npm install
+```
+Start the application
+
+```shell
+node index
 ```
 
 Once running you need to configure CatalogExplorer custom extensions to retrieve the Javascript and CSS from these locations:

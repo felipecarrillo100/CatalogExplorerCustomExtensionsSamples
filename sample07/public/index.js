@@ -21,6 +21,7 @@ window.catex = {
                 }
             }
         ],
+        webservicesLabel: "Datasets from Server",
         webservices: [
             {
                 id: "cs1-usa-id",
@@ -28,7 +29,7 @@ window.catex = {
                 title: "A custom service remotely hosted list of services provided asynchronously",
                 action: function(o, callback) {
                     if (typeof callback === "function") {
-                        localDatasets("usa",o).then(results=>callback(results));
+                        remoteDatasets("usa",o).then(results=>callback(results));
                     }
                 }
             },
@@ -38,7 +39,7 @@ window.catex = {
                 title: "A custom service remotely hosted list of services provided asynchronously",
                 action: function(o, callback) {
                     if (typeof callback === "function") {
-                        localDatasets("lucerna",o).then(results=>callback(results));
+                        remoteDatasets("lucerna",o).then(results=>callback(results));
                     }
                 }
             }
@@ -101,7 +102,7 @@ function TurfJSONURLCommand(algorthm, featureCollection, label) {
     }
 }
 
-function localDatasets(service, params) {
+function remoteDatasets(service, params) {
     return new Promise(resolve=>{
         const queryString = Object.keys(params).map(key => key + '=' + params[key]).join('&');
         const request = `http://localhost:3000/api/${service}?${queryString}`
