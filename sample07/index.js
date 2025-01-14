@@ -22,8 +22,8 @@ app.post("/api/turf/voronoi", (req, res) => {
 
 app.post("/api/turf/bezier", (req, res) => {
     const lineString = req.body;
-    const voronoiPolygons = turf.bezier(lineString);
-    res.json(voronoiPolygons);
+    const bezierLine = turf.bezier(lineString);
+    res.json(bezierLine);
 });
 
 app.get("/api/usa", (req, res) => {

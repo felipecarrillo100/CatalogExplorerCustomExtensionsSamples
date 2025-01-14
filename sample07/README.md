@@ -162,12 +162,12 @@ On the backend you will require to add a new API entry
 ```javascript
 app.post("/api/turf/bezier", (req, res) => {
    const lineString = req.body;
-   const voronoiPolygons = turf.bezier(lineString);
-   res.json(voronoiPolygons);
+   const bezierLine = turf.bezier(lineString);
+   res.json(bezierLine);
 });
 ```
-* Re
-
+### Optional Activities:
+In sample06 we learned how to implement `Curated Assets` in the front end.  
 
 ## Run the solution
 
