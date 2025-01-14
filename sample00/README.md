@@ -15,7 +15,7 @@ Navigate to:
 Custom Extensions -> Create & Edit
 1. Click the “Add New” button.
 2. Provide a name and a description.
-3. Under “Source From,” choose Local.
+3. Under `Source From` choose `Local`.
    * “Local” means the code for the Custom Extension is stored locally in the Catalog Explorer
    Database.
    * “CND” means the code is stored on a separate web server.

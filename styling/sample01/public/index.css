@@ -1,0 +1,238 @@
+:root {
+    --color-primary: #590120;
+    --color-primary-lighter-15: color-mix(in srgb,var(--color-primary),#fff 15%);
+    --color-primary-darker-15:  color-mix(in srgb,var(--color-primary),#000 15%);
+    --color-primary-darkest-30: color-mix(in srgb,var(--color-primary),#000 30%);
+    --color-primary-darkest-45: color-mix(in srgb,var(--color-primary),#000 45%);
+    --color-primary-darkest-60: color-mix(in srgb,var(--color-primary),#000 60%);
+    --background: var(--color-primary);
+    --background-gradient-image:linear-gradient(var(--color-primary), var(--color-primary-darker-15) 40%, var(--color-primary-darkest-30));
+    --background-gradient-darker-image:linear-gradient(var(--color-primary-darker-15), var(--color-primary-darkest-30) 40%, var(--color-primary-darkest-45));
+    --background-gradient-darkest-image:linear-gradient(var(--color-primary-darkest-30), var(--color-primary-darkest-45) 40%, var(--color-primary-darkest-60));
+    --text-light: #ffffff;
+}
+
+/* Navbar */
+.main-navbar{
+    --bs-bg-opacity: 1;
+    background-color: var(--background) !important;
+}
+
+.nav-link {
+    color: var(--text-light);
+}
+
+.navbar-collapse .dropdown-menu a {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 20px;
+}
+
+.dropdown-menu {
+    --bs-dropdown-bg: var(--background);
+}
+
+.navbar.bg-dark .nav-link:hover {
+    background-image: var(--background-gradient-image)
+}
+
+/* Floating Windows */
+.floating-window .floating-window-title {
+    background-color: var(--background);
+    background-image: var(--background-gradient-image)
+}
+
+/* Side Panels Windows */
+.SlidingPanel-header {
+    background-color: var(--background);
+    background-image: var(--background-gradient-image);
+}
+
+/* Tab Panels Windows */
+.tabpanel-content-header {
+    background-color: var(--background);
+    background-image: var(--background-gradient-image);
+}
+
+.tabpanel-tab-item.selected {
+    background-color: var(--background);
+    background-image: var(--background-gradient-image);
+}
+
+.tabpanel-tab-item:hover, .tabpanel-tab-item.selected:hover {
+    background-color: var(--background);
+    background-image: var(--color-primary-darker-15);
+}
+
+/* Map Overlay Toggle Buttons */
+.overlay-modular-container-toggle-button {
+    background-image: var(--background-gradient-image);
+}
+.overlay-modular-container-toggle-button:hover {
+    background-image: var(--background-gradient-darkest-image);
+}
+.overlay-modular-container-toggle-button.dark {
+    background-image: var(--background-gradient-darkest-image);
+}
+.overlay-modular-container-toggle-button.dark:hover {
+    background-image: var(--background-gradient-darker-image);
+}
+
+/* Toggle 2F/3D button */
+.toggle-button {
+    background-image: var(--background-gradient-image);
+}
+
+.toggle-button:hover {
+    background-image: var(--background-gradient-darker-image);
+}
+
+.toggle-button:active {
+    background-image: var(--background-gradient-darkest-image);
+}
+
+/* Catalog /Edit / Measure Buttons */
+.Catalog-Tools-Button.active {
+    background-image: var(--background-gradient-image);
+    color: #c8c8c8;
+}
+
+.Catalog-Tools-Button :hover {
+    background-image: var(--background-gradient-darker-image);
+    color: #c8c8c8;
+}
+
+/*.Measure-Tools-Button*/
+.Measure-Tools-Button.selected {
+    background-image: var(--background-gradient-image);
+    color: rgb(200, 200, 200);
+}
+
+.Measure-Tools-Button :hover{
+    background-image: var(--background-gradient-darker-image);
+    color: rgb(200, 200, 200);
+}
+
+.Measure-Tools-Button.selected :hover {
+    background-image: var(--background-gradient-darker-image);
+}
+
+/*.Edit-Tools-Button*/
+.Edit-Tools-Button.selected {
+    background-image: var(--background-gradient-image);
+    color: rgb(200, 200, 200);
+}
+
+.Edit-Tools-Button :hover{
+    background-image: var(--background-gradient-darker-image);
+    color: rgb(200, 200, 200);
+}
+
+.Edit-Tools-Button.selected :hover {
+    background-image: var(--background-gradient-darker-image);
+}
+
+/* Time Control */
+
+.map-time-window .time-slider-toolbar .Time-Line-Top-Button {
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+.map-time-window .time-slider-container .Time-Line-Top-Button:hover, .map-time-window .time-slider-container .Time-Line-Top-Button {
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+.map-time-window .time-slider-toolbar .Time-Line-Top-Select-SPEED {
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+.map-time-window .time-slider-toolbar .Time-Line-Top-Select-BASETIME:hover, .map-time-window .time-slider-toolbar .Time-Line-Top-Select-BASETIME:focus {
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+.map-time-window .time-slider-toolbar .Time-Line-Top-Select-BASETIME, .map-time-window .time-slider-toolbar .Time-Line-Top-Select-BASETIME {
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+
+/* Compass */
+.compass .compassDisplay .north {
+    border-bottom: 12px solid color-mix(in srgb, var(--color-primary) 50%, transparent);
+}
+
+.compass:hover {
+    color: var(--color-primary);
+    background-color: #242c3a;
+}
+
+.compass:hover .compassIconContainer .compassIcon {
+    color: var(--color-primary);
+}
+
+.compass:hover .compassDisplay .north {
+    border-bottom-color: color-mix(in srgb, var(--color-primary) 50%, transparent);
+}
+
+.compass .compassDisplay .north:hover {
+    border-bottom-color: color-mix(in srgb, var(--color-primary) 100%, transparent);
+}
+
+/* zoom control */
+.zoomcontrol:hover input[type=range]::-webkit-slider-thumb {
+    background: var(--color-primary);
+}
+
+.zoomcontrol:hover input[type=range]::-moz-range-thumb {
+    background: var(--color-primary);
+}
+
+.zoomcontrol:hover input[type=range]::-ms-thumb {
+    background: var(--color-primary);
+}
+
+/* pancontrol */
+.pancontrol:hover {
+    color:var(--color-primary);
+}
+
+.pancontrol .ctrl:hover .ball {
+    background: var(--background-gradient-image)
+}
+
+/* Layer Control */
+.layer-manager-span:hover, .layer-manager-span.active:hover {
+    background-color: var(--color-primary);
+}
+.layer-manager-span.active{
+    background-color: var(--color-primary-darker-15);
+}
+
+/* Searchbox */
+
+.searchbox-container .search-box__control.search-box__control--is-focused {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+.searchbox-container .spatial-search-button {
+    background-image: var(--background-gradient-image);
+}
+
+.searchbox-container .spatial-search-button:hover {
+    background-image: var(--background-gradient-darker-image);
+}
+
+.searchbox-container .spatial-search-button:active {
+    background-image: var(--background-gradient-darkest-image);
+}
+
+.searchbox-container .search-box__menu .search-box__option--is-focused {
+    /*background-color: var(--color-primary);*/
+    background-color: var(--color-primary-lighter-15);
+}
