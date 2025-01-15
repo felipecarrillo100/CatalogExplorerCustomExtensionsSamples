@@ -21,7 +21,7 @@ window.catex = {
                             };
                             const query = "gas station";
                             const detourTime = 60*10;  // 10 Minutes
-                            const newCommand = TomTomPOIAlongTheWayAPIURLCommand(route, query, detourTime, 'Gas Stations');
+                            const newCommand = TomTomPOIAlongTheWayAPIURLCommand(route, query, detourTime, 'Gas Stations', false);
                             window.catex.workspace.emitCommand(newCommand);
                         }
                     }
@@ -421,13 +421,13 @@ function TomTomPOIAreaAPIURLCommand(topLeft, btmRight, query, label, autozoom= t
     }
 }
 
-function TomTomPOIAlongTheWayAPIURLCommand(points, query, detourTime, label) {
+function TomTomPOIAlongTheWayAPIURLCommand(points, query, detourTime, label, autozoom=true) {
     const url = `https://api.tomtom.com/search/2/searchAlongRoute/${query}.json?maxDetourTime=${detourTime}&key=${TomTomKey}`;
     return {
         "action": 10,
         "parameters": {
             "action": "MemoryFeatureLayer",
-            "autozoom": true,
+            "autozoom": autozoom,
             "layer": {
                 "label": label,
                 "selectable": true,
