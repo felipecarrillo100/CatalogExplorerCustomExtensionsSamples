@@ -13,7 +13,7 @@ This code is writen in Typescript but and it uses Webpack to bunbdle the source 
 import logo from "./resources/images/R-evolution_logo_web_136px.png";
 ```
 
-Of course for this you need to properly configure your webpack.config.js to use the url-loader. This is something like this:
+Of course for this you need to properly configure your `webpack.config.js` to use the url-loader. This is something like this:
 ```javascript
 [
     ...otherLoaders,
@@ -46,7 +46,7 @@ npm start
 npm run build
 ```
 
-Once you have generated your bundle you can coopy the files to any webserver and serve them from there.
+Once you have generated your bundle you can copy the files to any webserver and serve them from there.
 
 ## To test production build
 ```
