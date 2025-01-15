@@ -10,6 +10,7 @@ import {localDatasetsUSA} from "./modules/loadDatasets";
 
 // This import will encode the image to Base4 using the library 'url-loader', look at the webpack.config.js
 import logo from "./resources/images/new_logo.png";
+import {colorsForm} from "./modules/colorsForm";
 
 export function setCatex(catex: Catex) {
     window.catex = catex;
@@ -21,6 +22,11 @@ setCatex({
             const logoArray = document.querySelector("img.navbar-brandIcon");
             if (logoArray && logoArray instanceof HTMLImageElement) {
                 logoArray.src = logo
+            }
+            const primaryColor = localStorage.getItem("app-primary-color");
+            if (primaryColor) {
+                const root = document.documentElement;
+                root.style.setProperty('--color-primary', primaryColor);
             }
         },
         webservicesLabel: "My company data",
@@ -36,12 +42,20 @@ setCatex({
                     }
                 }
             },        ],
-        navbarActionsLabel: "GREEN-CUBES",
+        navbarActionsLabel: "AMAZING-APP",
         navbarActions: [
+            {
+                label: "Colors",
+                title: "Just a sample of JSON Schema",
+                id: "id-action-colors",
+                action: (o, callback) => {
+                    colorsForm()
+                }
+            },
             {
                 label: "My workspaces",
                 title: "Just a sample of JSON Schema",
-                id: "id-form-sub0",
+                id: "id-form-action2",
                 children:[
                     {
                         label: "Workspace 1",
