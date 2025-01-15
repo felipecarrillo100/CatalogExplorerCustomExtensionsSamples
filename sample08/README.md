@@ -127,7 +127,18 @@ http://localhost:8080/catalogexplorer/home/
 * If you submit the form the values entered are printed in the console.
 
 ### Activity:
-Add your own forms using JSON Schema.
+* Create your own forms using JSON Schema. Try adding some widgets
+* Create forms using JSON Schema that inputs geometries 
+
+### Optional activity
+Create a form using JSON Schema that looks searches for points of interest in the area currently visible in the map. 
+
+The form must limit the search to the following points ["hospitals", "police", "airports", "firefighters", "gas station", "train"]
+
+<strong>Hint:</strong> You can reuse code from sample05 and modify your API for POI search to use the parameters `topLeft` and `btmRight` as defined in the documentation:
+
+https://developer.tomtom.com/search-api/documentation/search-service/points-of-interest-search
+
 
 ## Run the solution
 

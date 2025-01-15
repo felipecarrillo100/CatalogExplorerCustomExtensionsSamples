@@ -70,6 +70,21 @@ window.catex = {
                             },
                         ],
                     },
+                    {
+                        label: "Tomtom search",
+                        title: "TomTom search Point of Interest",
+                        id: "uid-sub03",
+                        children: [
+                            {
+                                label: "TomTom find in Map",
+                                title: "Finds a point of interest in the visible area of the map",
+                                id: "uid031",
+                                action: (o, callback)=>{
+                                    TomTomFindInMap();
+                                }
+                            }
+                        ],
+                    },
                 ]
             },
         ]
@@ -87,6 +102,30 @@ window.catex = {
                         const lineString = { type: 'LineString', coordinates};
                         const feature = {id: 0, type:"Feature", geometry: lineString, properties:tomtomResponse.routes[0].summary};
                         features.push(feature);
+                    }
+                    return JSON.stringify(features);
+                }
+            },
+            {
+                name: "TOMTOM-POI",
+                extensions: "json",
+                transform: (dataStr) => {
+                    const tomtomResponse = JSON.parse(dataStr);
+                    const features = [];
+                    if (tomtomResponse.results.length > 0) {
+                        for (let result of tomtomResponse.results) {
+                            const coordinates = [result.position.lon, result.position.lat];
+                            const geometry = { type: 'Point', coordinates};
+                            const feature = {
+                                id: result.id,
+                                type: "Feature",
+                                geometry: geometry,
+                                properties: result.poi
+                            }
+                            features.push(feature);
+                        }
+                    } else {
+                        window.catex.workspace.toastMessage({message: "No matches found", type: "warning"})
                     }
                     return JSON.stringify(features);
                 }
@@ -155,6 +194,27 @@ function TomTomRoutingGazetteer() {
     })
 }
 
+function TomTomFindInMap() {
+    window.catex.workspace.createJSONSchemaForm(tomtomInputsSearchQuery(), {
+        onCancel: ()=>{
+            console.log('Cancel');
+        },
+        onSuccess:(formData) => {
+            console.log(formData);
+            const map = window.catex.map.getMainMap();
+            const bounds = window.catex.utils.boundingBox(map.mapBounds);
+            const newCommand = TomTomPOIAreaAPIURLCommand(
+                [bounds[3], bounds[0]],
+                [bounds[1], bounds[2]],
+                formData.query,
+                'Tomtom matches: ' + formData.query,
+            );
+            window.catex.workspace.emitCommand(newCommand);
+            window.catex.workspace.toastMessage({message:"Command submitted", type:"info"})
+        }
+    })
+}
+
 function TomTomRoutingPoints() {
     window.catex.workspace.createJSONSchemaForm(tomtomInputsPoints(), {
         onChange: (formData)=> {
@@ -167,8 +227,8 @@ function TomTomRoutingPoints() {
         onSuccess:(formData) => {
             console.log(formData);
             const newCommand = TomTomAPIURLCommand(
-                [formData.origin.coordinates[1], formData.origin.coordinates[0]],
-                [formData.destination.coordinates[1], formData.destination.coordinates[0]],
+                [formData.origin.coordinates[0], formData.origin.coordinates[1]],
+                [formData.destination.coordinates[2], formData.destination.coordinates[3]],
                 'Tomtom route: ' + formData.travelMode,
                 formData
             );
@@ -298,7 +358,7 @@ function TomTomAPIURLCommand (point1, point2, label, options) {
                 "label": label,
                 "selectable": true,
                 "editable": false,
-                painterSettings
+                painterSettings: RoutePainterSettings
             },
             "model": {
                 transformer: "TOMTOM",
@@ -309,7 +369,178 @@ function TomTomAPIURLCommand (point1, point2, label, options) {
             }
         }
     }
-
 }
 
-const painterSettings = {"commons":{"balloon":false,"heatmap":{"enabled":false,"maximum":20,"normalizedGradient":[{"level":0,"color":"rgba( 0 , 0 , 255, 0.9)"},{"level":0.25,"color":"rgba( 0 , 255 , 255, 0.9)"},{"level":0.5,"color":"rgba( 0 , 255 , 0, 0.9)"},{"level":0.75,"color":"rgba( 255 , 255 , 0, 0.9)"},{"level":1,"color":"rgba( 255 , 0 , 0, 0.9)"}]}},"default":{"labelStyle":{"background":{"fill":{"color":"rgba(138, 200, 255, 0)"},"stroke":{"color":"rgba(138, 200, 255, 0)"}},"case":"none","font":{"bold":true,"fontFamily":"'Times New Roman', Times, serif","fontSize":"14px","italic":false,"underline":false},"labelProperty":"","stroke":{"color":"rgba(0,255,255,1)"}},"lineStyle":{"draped":true,"drapeTarget":1,"stroke":{"color":"rgb(138, 200, 255)","dashIndex":"solid","width":4}},"pointStyle":{"draped":true,"drapeTarget":1,"fill":{"color":"rgba(138,200,255,0.8)"},"heading":{"default":"","property":"","scale":1},"shape":"gradient-circle","size":{"height":16,"width":16},"anchorX":"","anchorY":"","stroke":{"color":"rgb(29,74,118)","width":1},"url":""},"shapeStyle":{"draped":true,"drapeTarget":1,"fill":{"color":"rgba(255, 0, 0, 0.6)"},"stroke":{"color":"rgb(255, 255, 0)","dashIndex":"solid","width":4},"extruded":{"type":"Flat","height":{"property":"","scale":1},"minHeight":{"property":"","scale":1}}}},"painterType":"DefaultPainter","selected":{"labelStyle":{"background":{"fill":{"color":"rgba(138, 200, 255, 0.8)"},"stroke":{"color":"rgba(138, 200, 255, 0.8)"}},"case":"none","color":"rgba(0,0,255,1)","font":{"bold":true,"fontFamily":"'Times New Roman', Times, serif","fontSize":"14px","italic":false,"underline":false},"labelProperty":"","stroke":{"color":"rgba(0,255,255,1)"}},"lineStyle":{"draped":true,"drapeTarget":1,"stroke":{"color":"rgb(0, 128, 256)","dashIndex":"solid","width":4}},"pointStyle":{"draped":true,"drapeTarget":1,"fill":{"color":"rgba(255, 200, 255, 0.8)"},"heading":{"default":"","property":"","scale":1},"shape":"gradient-circle","size":{"height":18,"width":18},"anchorX":"","anchorY":"","stroke":{"color":"rgba(146,24,48,1)","width":1},"url":""},"shapeStyle":{"fill":{"color":"rgba(0, 255, 0, 0.6)"},"stroke":{"color":"rgb(255, 255, 255)","dashIndex":"solid","width":4},"extruded":{"type":"Flat","height":{"property":"","scale":1},"minHeight":{"property":"","scale":1}},"drapeTarget":0}}}
+function TomTomPOIAreaAPIURLCommand(topLeft, btmRight, query, label) {
+    const url = `https://api.tomtom.com/search/2/poiSearch/${query}.json?topLeft=${topLeft[0]},${topLeft[1]}&btmRight=${btmRight[0]},${btmRight[1]}&key=${TomTomKey}`;
+    return {
+        "action": 10,
+        "parameters": {
+            "action": "MemoryFeatureLayer",
+            "autozoom": true,
+            "layer": {
+                "label": label,
+                "selectable": true,
+                "editable": false,
+                painterSettings: generatePOIPainterSettings(query),
+            },
+            "model": {
+                transformer: "TOMTOM-POI",
+                url
+            }
+        }
+    }
+}
+
+function tomtomInputsSearchQuery() {
+    return {
+        schema: {
+            "type": "object",
+            "title": "Tomtom search",
+            "description": "Enter the settings for your route:",
+            "properties": {
+                "query": {
+                    "title": "Select the POI",
+                    "description": "The POI to find in the map",
+                    type: "string",
+                    default: "hospitals",
+                    enum: [
+                        "hospitals", "police", "airports", "firefighters", "gas station", "train"
+                    ]
+                },
+            },
+            required: [
+                "query"
+            ]
+        },
+        uiSchema: {
+            "origin": window.catex.JSONSchema.uiSchema.Point,
+            "destination": window.catex.JSONSchema.uiSchema.Point,
+        }
+    }
+}
+
+
+const RoutePainterSettings = {"commons":{"balloon":false,"heatmap":{"enabled":false,"maximum":20,"normalizedGradient":[{"level":0,"color":"rgba( 0 , 0 , 255, 0.9)"},{"level":0.25,"color":"rgba( 0 , 255 , 255, 0.9)"},{"level":0.5,"color":"rgba( 0 , 255 , 0, 0.9)"},{"level":0.75,"color":"rgba( 255 , 255 , 0, 0.9)"},{"level":1,"color":"rgba( 255 , 0 , 0, 0.9)"}]}},"default":{"labelStyle":{"background":{"fill":{"color":"rgba(138, 200, 255, 0)"},"stroke":{"color":"rgba(138, 200, 255, 0)"}},"case":"none","font":{"bold":true,"fontFamily":"'Times New Roman', Times, serif","fontSize":"14px","italic":false,"underline":false},"labelProperty":"","stroke":{"color":"rgba(0,255,255,1)"}},"lineStyle":{"draped":true,"drapeTarget":1,"stroke":{"color":"rgb(138, 200, 255)","dashIndex":"solid","width":4}},"pointStyle":{"draped":true,"drapeTarget":1,"fill":{"color":"rgba(138,200,255,0.8)"},"heading":{"default":"","property":"","scale":1},"shape":"gradient-circle","size":{"height":16,"width":16},"anchorX":"","anchorY":"","stroke":{"color":"rgb(29,74,118)","width":1},"url":""},"shapeStyle":{"draped":true,"drapeTarget":1,"fill":{"color":"rgba(255, 0, 0, 0.6)"},"stroke":{"color":"rgb(255, 255, 0)","dashIndex":"solid","width":4},"extruded":{"type":"Flat","height":{"property":"","scale":1},"minHeight":{"property":"","scale":1}}}},"painterType":"DefaultPainter","selected":{"labelStyle":{"background":{"fill":{"color":"rgba(138, 200, 255, 0.8)"},"stroke":{"color":"rgba(138, 200, 255, 0.8)"}},"case":"none","color":"rgba(0,0,255,1)","font":{"bold":true,"fontFamily":"'Times New Roman', Times, serif","fontSize":"14px","italic":false,"underline":false},"labelProperty":"","stroke":{"color":"rgba(0,255,255,1)"}},"lineStyle":{"draped":true,"drapeTarget":1,"stroke":{"color":"rgb(0, 128, 256)","dashIndex":"solid","width":4}},"pointStyle":{"draped":true,"drapeTarget":1,"fill":{"color":"rgba(255, 200, 255, 0.8)"},"heading":{"default":"","property":"","scale":1},"shape":"gradient-circle","size":{"height":18,"width":18},"anchorX":"","anchorY":"","stroke":{"color":"rgba(146,24,48,1)","width":1},"url":""},"shapeStyle":{"fill":{"color":"rgba(0, 255, 0, 0.6)"},"stroke":{"color":"rgb(255, 255, 255)","dashIndex":"solid","width":4},"extruded":{"type":"Flat","height":{"property":"","scale":1},"minHeight":{"property":"","scale":1}},"drapeTarget":0}}}
+
+function generatePOIPainterSettings(query) {
+    const IconShape = {
+        "hospitals": {shape: "cross", stroke: "rgba(204,99,30,1)", fill:"rgba(93,50,32,0.8)" },
+        "police": {shape: "target", stroke: "rgb(30,158,204)", fill:"rgba(28,52,133,0.8)" },
+        "airports": {shape: "plane", stroke: "rgb(20,215,140)", fill:"rgba(16,124,143,0.8)" },
+        "firefighters": {shape: "star", stroke: "rgb(89,1,32)", fill:"rgba(93,50,32,0.8)" },
+        "gas station": {shape: "poi", stroke: "rgb(218,217,189)", fill:"rgba(93,50,32,0.8)" },
+        "train": {shape: "circle", stroke: "rgb(70,68,52)", fill:"rgb(204,181,30)" }
+    }
+    return {
+        "commons": {
+            "balloon": false,
+            "heatmap": {
+                "enabled": false,
+                "maximum": 20,
+                "normalizedGradient": [{"level": 0, "color": "rgba( 0 , 0 , 255, 0.9)"}, {
+                    "level": 0.25,
+                    "color": "rgba( 0 , 255 , 255, 0.9)"
+                }, {"level": 0.5, "color": "rgba( 0 , 255 , 0, 0.9)"}, {
+                    "level": 0.75,
+                    "color": "rgba( 255 , 255 , 0, 0.9)"
+                }, {"level": 1, "color": "rgba( 255 , 0 , 0, 0.9)"}]
+            }
+        },
+        "default": {
+            "labelStyle": {
+                "background": {
+                    "fill": {"color": "rgba(138, 200, 255, 0)"},
+                    "stroke": {"color": "rgba(138, 200, 255, 0)"}
+                },
+                "case": "none",
+                "font": {
+                    "bold": true,
+                    "fontFamily": "'Times New Roman', Times, serif",
+                    "fontSize": "14px",
+                    "italic": false,
+                    "underline": false
+                },
+                "labelProperty": "name",
+                "stroke": {"color": "rgb(176,25,116)"}
+            },
+            "lineStyle": {
+                "draped": true,
+                "drapeTarget": 1,
+                "stroke": {"color": "rgb(138, 200, 255)", "dashIndex": "solid", "width": 2}
+            },
+            "pointStyle": {
+                "draped": true,
+                "drapeTarget": 1,
+                "fill": {"color": IconShape[query].fill},
+                "heading": {"default": "", "property": "", "scale": 1},
+                "shape": IconShape[query].shape,
+                "size": {"height": 24, "width": 24},
+                "anchorX": "",
+                "anchorY": "",
+                "stroke": {"color": IconShape[query].stroke, "width": 1},
+                "url": "",
+                "uom": "Pixels"
+            },
+            "shapeStyle": {
+                "draped": true,
+                "drapeTarget": 1,
+                "fill": {"color": "rgba(255, 0, 0, 0.6)"},
+                "stroke": {"color": "rgb(255, 255, 0)", "dashIndex": "solid", "width": 2},
+                "extruded": {
+                    "type": "Flat",
+                    "height": {"property": "", "scale": 1},
+                    "minHeight": {"property": "", "scale": 1}
+                }
+            }
+        },
+        "painterType": "DefaultPainter",
+        "selected": {
+            "labelStyle": {
+                "background": {
+                    "fill": {"color": "rgba(138, 200, 255, 0.8)"},
+                    "stroke": {"color": "rgba(138, 200, 255, 0.8)"}
+                },
+                "case": "none",
+                "color": "rgba(0,0,255,1)",
+                "font": {
+                    "bold": true,
+                    "fontFamily": "'Times New Roman', Times, serif",
+                    "fontSize": "14px",
+                    "italic": false,
+                    "underline": false
+                },
+                "labelProperty": "name",
+                "stroke": {"color": "rgb(176,25,116)"}
+            },
+            "lineStyle": {
+                "draped": true,
+                "drapeTarget": 1,
+                "stroke": {"color": "rgb(0, 128, 256)", "dashIndex": "solid", "width": 2}
+            },
+            "pointStyle": {
+                "draped": true,
+                "drapeTarget": 1,
+                "fill": {"color": "rgba(255, 200, 255, 0.8)"},
+                "heading": {"default": "", "property": "", "scale": 1},
+                "shape": IconShape[query].shape,
+                "size": {"height": 18, "width": 18},
+                "anchorX": "",
+                "anchorY": "",
+                "stroke": {"color": "rgba(146,24,48,1)", "width": 1},
+                "url": "",
+                "uom": "Pixels"
+            },
+            "shapeStyle": {
+                "fill": {"color": "rgba(0, 255, 0, 0.6)"},
+                "stroke": {"color": "rgb(255, 255, 255)", "dashIndex": "solid", "width": 2},
+                "extruded": {
+                    "type": "Flat",
+                    "height": {"property": "", "scale": 1},
+                    "minHeight": {"property": "", "scale": 1}
+                },
+                "drapeTarget": 0
+            }
+        }
+    };
+}
