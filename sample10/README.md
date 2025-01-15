@@ -8,33 +8,36 @@ mention that there are hundreds of libraries already available that provide modu
 you can incorporate directly into your application with little intrusion to your code design.
 
 Once you have Webpack in place adding React is quite simple. We only need to modify our webpack
-configuration to add a React loader and include the React libraries as a dependency in our package.json. You can use the provided `webpack.config.js` as a reference.
+configuration to add a React loader to handle the React syntax in our `package.json`. You can use the provided `webpack.config.js` as a reference.
 
 The intention of this training is not to make you a React expert; therefore, we will provide you with the
-code required for this exercise. But you can of course experiment yourself and try your own ideas on top
-of the code provided. Instead, in this exercise we will focus on how to use react in combination with
-catalog explorer. And for that you need to know the following concepts.
+code required for this exercise. But you can of course, you should experiment yourself and try your own ideas on top
+of the code provided. 
+
+In this exercise, we will focus on how to use React in combination with
+Catalog Explorer to crete a Custom Extension, and for this you need to know the following concepts:
 
 ### Root DOM element
 React normally needs a root HTML DOM element to where you can attach your code. For this, Catalog
-explorer provides a div element with id=”document-companion.” You can use this element as root of your
+explorer provides a div element with `id="document-companion"`. You can use this element as root of your
 application. How to do this, depends on your react version, in React 18 it looks something like this:
 ```javascript
-const root = ReactDOM.createRoot(document.getElementById("documentcompanion"));
+const root = ReactDOM.createRoot(document.getElementById("document-companion"));
 root.render(<App/>);
 ```
 Where App is the main React component of your application. In the code of this example our App
-component is not doing much, but you can use this component to place component on top of Catalog
+component is not doing much, but you can use this component to place a component on top of Catalog
 Explorer according to your needs.
-### Dynamic form DOM element
+### Dynamic Form DOM element
 The root element is certainly an option you have, but when you create react components using the root
 element you risk the fact that your code may look a bit disconnected from the rest of the Catalog Explorer
-environment. Or you will be forced to write much more code to achieve a good level of integration. To
-overcome those problems, we provide you the possibility of adding your react code on top of a Dynamic
-DOM element that lives inside a catalog explorer side panel, and it is integrated to the innerworkings of
-Catalog Explore, therefore simplifying the integration of your code with the rest of the application.
+environment. Or you will be forced to write much more code to achieve a good level of integration. 
 
-To create a form using React in one of the react side panels you will use something like this:
+To overcome those problems, we provide you the possibility of adding your React code on top of a Dynamic
+DOM element that lives inside a Catalog Explorer panels, and it is integrated to the innerworkings of
+Catalog Explorer, therefore simplifying the integration of your code with the rest of the application.
+
+To create a form using React in one of the side-panels you will use something like this:
 ```javascript
 window.catex.workspace.createCustomForm((element, handlers)=>{
     const root = ReactDOM.createRoot(element);
@@ -44,12 +47,12 @@ window.catex.workspace.createCustomForm((element, handlers)=>{
 As you see, the window.catex.workspace.createCustomForm will pass the DOM element to use as a
 parameter to the callback function. and the call back function will take care of rendering the react
 component inside the DOM element. The handlers required for integration will be passed as a property to
-our react component. The options object is a configuration object that defines options such as the title to
+our React component. The `options` object is a configuration object that defines options such as the `title` to
 use for the form or the panel to use for display and whether you want to show cancel and submit buttons
-in the form
+in the form.
 
 ## Procedure
-1. Go to folder sample10. You will notice already contains a webpack project defined in
+1. Go to folder `sample10`. You will notice already contains a webpack project defined in
    `webpack.config.js` which contains all the required settings including React.
 2. Typescript has also been configured as you seen in the file `tsconfig.json`, You will notice also that the
    folder called `interfaces` contains the file `catex.ts` will all the type definitions required by Custom
