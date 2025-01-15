@@ -123,8 +123,25 @@ https://sampleservices.luciad.com/wfs
 
 https://developer.tomtom.com/routing-api/documentation/routing/calculate-route
 
-### Activity:
-In this activity you need to integrate the TomTom API for Points of Interest to find hospital within 2km from a point. The TomTom POI API supports many parameters let's limit to the following: lon, lat, radius.
+### Activities:
+* Activity 1: Modify you action `Tomtom route` in `featureLayer.onMultiFeatureSelect` in such a way that TommTom route action is only show when you select 2 features. You can do this by defining a `validate` function. Look at the code snippet below:
+```javascript
+        onMultiFeatureSelect: [
+            {
+                label: "Tomtom route",
+                title: "Calculate Route using Tomtom API",
+                validate: function(o){
+                    return o.features.length === 2;
+                },
+                action: function(o, callback) {
+                   <your code>   
+                }
+            },
+        ]
+```
+* Activity 2: In this activity you need to integrate the TomTom API for Points of Interest to find hospital within 2km from a point.
+
+The TomTom POI API supports many parameters. For simplicity, let's limit to the following: lon, lat, radius.
 
 <strong>HINT:</strong> For more information about the TomTom POI API, visit:
 
@@ -134,7 +151,7 @@ https://developer.tomtom.com/search-api/documentation/search-service/points-of-i
 
 <strong>HINT:</strong> You will require a new Data Transformer `data:transformers`
 
-The following code snippet illustrates how the data transformer looks like:
+The following code snippet illustrates how the data transformer will look like:
 ```shell
 [
   ...otherDataTransformers,

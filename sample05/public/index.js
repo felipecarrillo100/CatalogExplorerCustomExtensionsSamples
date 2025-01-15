@@ -23,6 +23,9 @@ window.catex = {
             {
                 label: "Tomtom route",
                 title: "Calculate Route using Tomtom API",
+                validate: function(o){
+                    return o.features.length === 2;
+                },
                 action: function(o, callback) {
                     if (typeof callback === "function") {
                         if (o.features) {
