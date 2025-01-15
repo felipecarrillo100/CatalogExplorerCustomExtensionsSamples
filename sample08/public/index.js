@@ -101,11 +101,19 @@ window.catex = {
                         id: "uid-sub03",
                         children: [
                             {
-                                label: "TomTom find in Map",
+                                label: "TomTom search in Map",
                                 title: "Finds a point of interest in the visible area of the map",
                                 id: "uid031",
                                 action: (o, callback)=>{
                                     TomTomFindInMapForm();
+                                }
+                            },
+                            {
+                                label: "TomTom search inside Bounds",
+                                title: "Finds a point of interest in a user defined area",
+                                id: "uid032",
+                                action: (o, callback)=>{
+                                    TomTomFindInBoundsForm();
                                 }
                             }
                         ],
@@ -236,7 +244,26 @@ function TomTomFindInMapForm() {
                 false
             );
             window.catex.workspace.emitCommand(newCommand);
-            window.catex.workspace.toastMessage({message:"Command submitted", type:"info"})
+        }
+    })
+}
+
+function TomTomFindInBoundsForm() {
+    window.catex.workspace.createJSONSchemaForm(tomtomInputsSearchQuery(true), {
+        onCancel: ()=>{
+            console.log('Cancel');
+        },
+        onSuccess:(formData) => {
+            console.log(formData);
+            const coordinates = formData.bounds.coordinates;
+            const newCommand = TomTomPOIAreaAPIURLCommand(
+                [coordinates[1][1], coordinates[0][0]],
+                [coordinates[0][1], coordinates[1][0]],
+                formData,
+                'Tomtom matches: ' + formData.query,
+                false
+            );
+            window.catex.workspace.emitCommand(newCommand);
         }
     })
 }
@@ -274,13 +301,13 @@ function TomTomRoutingPoints() {
         onSuccess:(formData) => {
             console.log(formData);
             const newCommand = TomTomAPIURLCommand(
-                [formData.origin.coordinates[0], formData.origin.coordinates[1]],
-                [formData.destination.coordinates[2], formData.destination.coordinates[3]],
+                [formData.origin.coordinates[1], formData.origin.coordinates[0]],
+                [formData.destination.coordinates[1], formData.destination.coordinates[0]],
                 'Tomtom route: ' + formData.travelMode,
                 formData
             );
             window.catex.workspace.emitCommand(newCommand);
-            window.catex.workspace.toastMessage({message:"Command submitted", type:"info"})
+            window.catex.workspace.toastMessage({message:"Calculating route", type:"info"})
         }
     })
 }
@@ -466,13 +493,18 @@ function TomTomPOIAlongTheWayAPIURLCommand(route, formData, detourTime, label, a
     }
 }
 
-function tomtomInputsSearchQuery() {
+function tomtomInputsSearchQuery(bounds= false) {
+    const useBoundsObject = bounds ? {
+        "bounds": {title: "Enter Bounds", ...window.catex.JSONSchema.schema.BBox},
+    } : {};
+    const useBoundsArray = bounds ? ["bounds"] : [];
     return {
         schema: {
             "type": "object",
             "title": "Tomtom search",
             "description": "Enter the settings for your route:",
             "properties": {
+                ...useBoundsObject,
                 "query": {
                     "title": "Select the POI",
                     "description": "The POI to find in the map",
@@ -492,6 +524,7 @@ function tomtomInputsSearchQuery() {
                 },
             },
             required: [
+                ...useBoundsArray,
                 "query"
             ]
         },
@@ -502,6 +535,7 @@ function tomtomInputsSearchQuery() {
                     inputType: 'range',
                 },
             },
+            "bounds": window.catex.JSONSchema.uiSchema.BBox,
         }
     }
 }
