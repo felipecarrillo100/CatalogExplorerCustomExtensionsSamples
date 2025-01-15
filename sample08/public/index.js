@@ -208,6 +208,7 @@ function TomTomFindInMap() {
                 [bounds[1], bounds[2]],
                 formData.query,
                 'Tomtom matches: ' + formData.query,
+                false
             );
             window.catex.workspace.emitCommand(newCommand);
             window.catex.workspace.toastMessage({message:"Command submitted", type:"info"})
@@ -371,13 +372,13 @@ function TomTomAPIURLCommand (point1, point2, label, options) {
     }
 }
 
-function TomTomPOIAreaAPIURLCommand(topLeft, btmRight, query, label) {
+function TomTomPOIAreaAPIURLCommand(topLeft, btmRight, query, label, autozoom= true) {
     const url = `https://api.tomtom.com/search/2/poiSearch/${query}.json?topLeft=${topLeft[0]},${topLeft[1]}&btmRight=${btmRight[0]},${btmRight[1]}&key=${TomTomKey}`;
     return {
         "action": 10,
         "parameters": {
             "action": "MemoryFeatureLayer",
-            "autozoom": true,
+            "autozoom": autozoom,
             "layer": {
                 "label": label,
                 "selectable": true,
