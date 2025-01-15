@@ -31,6 +31,8 @@ serve public -C
 4. Edit the content of index.js inside the public folder with the following content:
 
 ```JavaScript
+const TomTomKey = "api_key_placeholder";
+
 window.catex = {
     featureLayer: {
         onMultiFeatureSelect: [{
@@ -83,7 +85,6 @@ window.catex = {
 }
 
 function TomTomRouteAPIURLCommand(point1, point2, label) {
-    const TomTomKey = "api_key_placeholder";
     const url = `https://api.tomtom.com/routing/1/calculateRoute/${point1[0]},${point1[1]}:${point2[0]},${point2[1]}/json?&vehicleHeading=90&sectionType=traffic&report=effectiveSettings&routeType=eco&traffic=true&avoid=unpavedRoads&travelMode=car&vehicleMaxSpeed=120&vehicleCommercial=false&vehicleEngineType=combustion&key=${TomTomKey}`;
     return {
         "action": 10,
