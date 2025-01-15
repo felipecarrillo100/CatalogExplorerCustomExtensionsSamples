@@ -50,16 +50,20 @@ in the form
 
 ## Procedure
 1. Go to folder sample10. You will notice already contains a webpack project defined in
-   “webpack.config.js” which contains all the required settings including React.
-2. Typescript has also been configured as you seen in the file tsconfig.json, You will notice also that the
-   folder called “interfaces” contains the file `catex.ts` will all the type definitions required by Custom
+   `webpack.config.js` which contains all the required settings including React.
+2. Typescript has also been configured as you seen in the file `tsconfig.json`, You will notice also that the
+   folder called `interfaces` contains the file `catex.ts` will all the type definitions required by Custom
    Extensions
-3. Basic linting has also been configured to use React (optional) eslintrc.js
+3. Basic linting has also been configured to use React (optional) `eslintrc.js`
 4. To run this project type
+```shell
    npm install
+```
 5. To run this project in development mode type
+```shell
    npm start
-6. The webpack development server is configured to serve at localhost:5000, go to the Catalog Explorer
+```
+6. The webpack development server is configured to serve at `localhost:5000`, go to the Catalog Explorer
    administration dashboard and configure it to look for the custom extension at:
    * JavaScript: http://localhost:5000/index.js
    * CSS: http://localhost:5000/index.css
@@ -71,13 +75,15 @@ in the form
 
 ## Activity
 Run webpack in development mode and make some changes, for instance add a new action that displays
-a form using React. Place the code of your action in a separate file to test the modularity. Add a thirdparty library of your choice to your project using “npm install”. In this example we have included two
+a form using React. Place the code of your action in a separate file to test the modularity. 
+
+Add a third-party library of your choice to your project using `npm install`. In this example we have included two
 third-party libraries: recharts and polygons-generator
 
 <strong>HINT:</strong> The main file (entry point) is located at “src/index.tsx“. You could place your custom extension code
-directly here, but for modularity we recommend placing it in separate files to achieve modularity. Notice
+directly here, but for modularity, we recommend placing it in separate files. Notice
 also that as react development states, any code that files that contain react rendering code needs to have
-jsx/tsx extension.
+`jsx/tsx` extension.
 
 
 # Run Solution
@@ -91,6 +97,18 @@ npm install
 ```
 npm start
 ```
+Once running you need to configure CatalogExplorer custom extensions to retrive the Javascript and CSS from these locations:
+
+JavaScript (CDN):
+```
+http://localhost:5000/index.js
+```
+
+CSS (CDN):
+```
+http://localhost:5000/index.css
+```
+
 
 ## To Build
 ```
@@ -102,17 +120,5 @@ Once you have generated your bundle you can copy the files to any webserver and 
 ## To test production build
 ```
 npm run serve
-```
-
-Once running you need to configure CatalogExplorer custom extensions to retrive the Javascript and CSS from these locations:
-
-JavaScript (CDN):
-```
-http://localhost:5000/index.js
-```
-
-CSS (CDN):
-```
-http://localhost:5000/index.css
 ```
 
