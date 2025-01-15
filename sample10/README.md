@@ -2,7 +2,7 @@
 # Custom Extension using React
 
 React Is a framework, easy to learn and use. It is also easy to integrate in our projects with a minimal
-knowledge of JavaScript. React allow us to build rich UI with must less effort than traditional JavaScript
+knowledge of JavaScript. React allow us to build a rich UI with must less effort than traditional JavaScript
 code. React allow us to split our UI into custom modular components similar to existing HTML tags. Not to
 mention that there are hundreds of libraries already available that provide modular react components that
 you can incorporate directly into your application with little intrusion to your code design.
