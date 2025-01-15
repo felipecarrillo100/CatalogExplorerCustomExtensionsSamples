@@ -40,15 +40,16 @@ window.catex = {
             title: "Demo of JSON Schema capabilities",
             id: "uid011",
             action: (o, callback) => {
-                MyJSONSchemademo();
+                MyJSONSchemademoForm();
             }
         }, ]
     },
 }
 
-function MyJSONSchemademo() {
-    window.catex.workspace.createJSONSchemaForm(aboutYouForm(), {
-        onChange: (data) => {
+// Display a Form generated from a JSON Schema
+function MyJSONSchemademoForm() {
+    window.catex.workspace.createJSONSchemaForm(aboutYouFormSchema(), {
+        onChange: (formData) => {
             // Not used in this sample
         },
         onCancel: () => {
@@ -68,7 +69,8 @@ function MyJSONSchemademo() {
     })
 }
 
-function aboutYouForm() {
+// Define yous JSON Schema for the form
+function aboutYouFormSchema() {
     return {
         schema: {
             "type": "object",

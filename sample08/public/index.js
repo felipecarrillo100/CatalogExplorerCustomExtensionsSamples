@@ -82,7 +82,7 @@ window.catex = {
                                 title: "Calculates a route between two points using the Gazetteer",
                                 id: "uid021",
                                 action: (o, callback)=>{
-                                    TomTomRoutingGazetteer();
+                                    TomTomRoutingGazetteerForm();
                                 }
                             },
                             {
@@ -90,7 +90,7 @@ window.catex = {
                                 title: "Calculates a route between two points using the Pick Point Widget",
                                 id: "uid022",
                                 action: (o, callback)=>{
-                                    TomTomRoutingPoints();
+                                    TomTomRoutingPointsForm();
                                 }
                             },
                         ],
@@ -189,7 +189,7 @@ function tomtomLayerCommand(layerName)  {
 }
 
 function MyJSONSchemademo() {
-    window.catex.workspace.createJSONSchemaForm(aboutYouForm(), {
+    window.catex.workspace.createJSONSchemaForm(aboutYouFormSchema(), {
         onChange: (formData)=> {
             //  console.log(JSON.stringify(formData, null, 2));
         },
@@ -204,8 +204,8 @@ function MyJSONSchemademo() {
     })
 }
 
-function TomTomRoutingGazetteer() {
-    window.catex.workspace.createJSONSchemaForm(tomtomInputsGazetteer(), {
+function TomTomRoutingGazetteerForm() {
+    window.catex.workspace.createJSONSchemaForm(tomtomInputsGazetteerSchema(), {
         onChange: (formData)=> {
             //  console.log(JSON.stringify(formData, null, 2));
         },
@@ -227,70 +227,8 @@ function TomTomRoutingGazetteer() {
     })
 }
 
-function TomTomFindInMapForm() {
-    window.catex.workspace.createJSONSchemaForm(tomtomInputsSearchQuery(), {
-        onCancel: ()=>{
-            console.log('Cancel');
-        },
-        onSuccess:(formData) => {
-            console.log(formData);
-            const map = window.catex.map.getMainMap();
-            const bounds = window.catex.utils.boundingBox(map.mapBounds);
-            const newCommand = TomTomPOIAreaAPIURLCommand(
-                [bounds[3], bounds[0]],
-                [bounds[1], bounds[2]],
-                formData,
-                'Tomtom matches: ' + formData.query,
-                false
-            );
-            window.catex.workspace.emitCommand(newCommand);
-        }
-    })
-}
-
-function TomTomFindInBoundsForm() {
-    window.catex.workspace.createJSONSchemaForm(tomtomInputsSearchQuery(true), {
-        onCancel: ()=>{
-            console.log('Cancel');
-        },
-        onSuccess:(formData) => {
-            console.log(formData);
-            const coordinates = formData.bounds.coordinates;
-            const newCommand = TomTomPOIAreaAPIURLCommand(
-                [coordinates[1][1], coordinates[0][0]],
-                [coordinates[0][1], coordinates[1][0]],
-                formData,
-                'Tomtom matches: ' + formData.query,
-                false
-            );
-            window.catex.workspace.emitCommand(newCommand);
-        }
-    })
-}
-
-function TomTomFindAlongTheWayForm(route) {
-    window.catex.workspace.createJSONSchemaForm(tomtomInputsSearchQuery(), {
-        onCancel: ()=>{
-            console.log('Cancel');
-        },
-        onSuccess:(formData) => {
-            console.log(formData);
-            const map = window.catex.map.getMainMap();
-            const newCommand = TomTomPOIAlongTheWayAPIURLCommand(
-                route,
-                formData,
-                60*10,
-                'Tomtom matches: ' + formData.query,
-                false
-            );
-            window.catex.workspace.emitCommand(newCommand);
-            window.catex.workspace.toastMessage({message:"Command submitted", type:"info"})
-        }
-    })
-}
-
-function TomTomRoutingPoints() {
-    window.catex.workspace.createJSONSchemaForm(tomtomInputsPoints(), {
+function TomTomRoutingPointsForm() {
+    window.catex.workspace.createJSONSchemaForm(tomtomInputsPointsSchema(), {
         onChange: (formData)=> {
             //  console.log(JSON.stringify(formData, null, 2));
         },
@@ -313,114 +251,69 @@ function TomTomRoutingPoints() {
 }
 
 
-
-function aboutYouForm() {
-    return {
-        schema: {
-            "type": "object",
-            "title": "About you",
-            "properties": {
-              "Lastname": {
-                "title": "Enter your lastname",
-                "type": "string"
-              },
-              "Firstname": {
-                "title": "Enter your firstname",
-                "type": "string"
-              },
-              "Age": {
-                "title": "Enter your age",
-                "type": "number",
-                "minimum": 18,
-                "maximum": 100,
-              },
-              "SalaryBand": {
-                "title": "Salary band",
-                "type": "integer",
-                "minimum": 0,
-                "maximum": 100000,
-                "multipleOf": 10000
-              }
-            }
-          }
-           ,
-        uiSchema: {
-            "Age": {
-                "ui:widget": "updown"
-              },
-            "SalaryBand": {
-              "ui:widget": "range",
-              'ui:options': {
-                inputType: 'range',
-              },
-            }
-          },
-          formData: {
-            Age: 18,
-          }
-    }
-}
-
-function tomtomInputsGazetteer() {
-    return {
-        schema: {
-            "type": "object",
-            "title": "Tomtom route",
-            "description": "Enter the settings for your route:",
-            "properties": {
-                "origin": {title: "Enter origin", ...window.catex.JSONSchema.schema.GazetteerPoint},
-                "destination": {title: "Enter destination", ...window.catex.JSONSchema.schema.GazetteerPoint},
-                "travelMode": {
-                    "title": "Select the mode",
-                    "description": "The mode to calculate the route",
-                    type: "string",
-                    default: "car",
-                    enum: [
-                        "car", "truck", "taxi", "bus", "van", "motorcycle"
-                    ]
-                },
-            },
-            required: [
-                "travelMode"
-            ]
+function TomTomFindInMapForm() {
+    window.catex.workspace.createJSONSchemaForm(tomtomInputsSearchQuerySchema(), {
+        onCancel: ()=>{
+            console.log('Cancel');
         },
-        uiSchema: {
-            "origin": window.catex.JSONSchema.uiSchema.GazetteerPoint,
-            "destination": window.catex.JSONSchema.uiSchema.GazetteerPoint,
+        onSuccess:(formData) => {
+            console.log(formData);
+            const map = window.catex.map.getMainMap();
+            const bounds = window.catex.utils.boundingBox(map.mapBounds);
+            const newCommand = TomTomPOIAreaAPIURLCommand(
+                [bounds[3], bounds[0]],
+                [bounds[1], bounds[2]],
+                formData,
+                'Tomtom matches: ' + formData.query,
+                false
+            );
+            window.catex.workspace.emitCommand(newCommand);
         }
-    }
+    })
 }
 
-function tomtomInputsPoints() {
-    return {
-        schema: {
-            "type": "object",
-            "title": "Tomtom route",
-            "description": "Enter the settings for your route:",
-            "properties": {
-                "origin": {title: "Enter origin", ...window.catex.JSONSchema.schema.Point},
-                "destination": {title: "Enter destination", ...window.catex.JSONSchema.schema.Point},
-                "travelMode": {
-                    "title": "Select the mode",
-                    "description": "The mode to calculate the route",
-                    type: "string",
-                    default: "car",
-                    enum: [
-                        "car", "truck", "taxi", "bus", "van", "motorcycle"
-                    ]
-                },
-            },
-            required: [
-                "travelMode"
-            ]
+function TomTomFindInBoundsForm() {
+    window.catex.workspace.createJSONSchemaForm(tomtomInputsSearchQuerySchema(true), {
+        onCancel: ()=>{
+            console.log('Cancel');
         },
-        uiSchema: {
-            "origin": window.catex.JSONSchema.uiSchema.Point,
-            "destination": window.catex.JSONSchema.uiSchema.Point,
+        onSuccess:(formData) => {
+            console.log(formData);
+            const coordinates = formData.bounds.coordinates;
+            const newCommand = TomTomPOIAreaAPIURLCommand(
+                [coordinates[1][1], coordinates[0][0]],
+                [coordinates[0][1], coordinates[1][0]],
+                formData,
+                'Tomtom matches: ' + formData.query,
+                false
+            );
+            window.catex.workspace.emitCommand(newCommand);
         }
-    }
+    })
 }
 
+function TomTomFindAlongTheWayForm(route) {
+    window.catex.workspace.createJSONSchemaForm(tomtomInputsSearchQuerySchema(), {
+        onCancel: ()=>{
+            console.log('Cancel');
+        },
+        onSuccess:(formData) => {
+            console.log(formData);
+            const map = window.catex.map.getMainMap();
+            const newCommand = TomTomPOIAlongTheWayAPIURLCommand(
+                route,
+                formData,
+                60*10,
+                'Tomtom matches: ' + formData.query,
+                false
+            );
+            window.catex.workspace.emitCommand(newCommand);
+            window.catex.workspace.toastMessage({message:"Command submitted", type:"info"})
+        }
+    })
+}
+
+// Commands
 function TomTomAPIURLCommand (point1, point2, label, options) {
     const url = `https://api.tomtom.com/routing/1/calculateRoute/${point1[0]},${point1[1]}:${point2[0]},${point2[1]}/json?&vehicleHeading=90&sectionType=traffic&report=effectiveSettings&routeType=eco&traffic=true&avoid=unpavedRoads&travelMode=${options.travelMode}&vehicleMaxSpeed=120&vehicleCommercial=false&vehicleEngineType=combustion&key=${TomTomKey}`;
     return {
@@ -493,7 +386,116 @@ function TomTomPOIAlongTheWayAPIURLCommand(route, formData, detourTime, label, a
     }
 }
 
-function tomtomInputsSearchQuery(bounds= false) {
+// Schemas
+function aboutYouFormSchema() {
+    return {
+        schema: {
+            "type": "object",
+            "title": "About you",
+            "properties": {
+                "Lastname": {
+                    "title": "Enter your lastname",
+                    "type": "string"
+                },
+                "Firstname": {
+                    "title": "Enter your firstname",
+                    "type": "string"
+                },
+                "Age": {
+                    "title": "Enter your age",
+                    "type": "number",
+                    "minimum": 18,
+                    "maximum": 100,
+                },
+                "SalaryBand": {
+                    "title": "Salary band",
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 100000,
+                    "multipleOf": 10000
+                }
+            }
+        }
+        ,
+        uiSchema: {
+            "Age": {
+                "ui:widget": "updown"
+            },
+            "SalaryBand": {
+                "ui:widget": "range",
+                'ui:options': {
+                    inputType: 'range',
+                },
+            }
+        },
+        formData: {
+            Age: 18,
+        }
+    }
+}
+
+function tomtomInputsGazetteerSchema() {
+    return {
+        schema: {
+            "type": "object",
+            "title": "Tomtom route",
+            "description": "Enter the settings for your route:",
+            "properties": {
+                "origin": {title: "Enter origin", ...window.catex.JSONSchema.schema.GazetteerPoint},
+                "destination": {title: "Enter destination", ...window.catex.JSONSchema.schema.GazetteerPoint},
+                "travelMode": {
+                    "title": "Select the mode",
+                    "description": "The mode to calculate the route",
+                    type: "string",
+                    default: "car",
+                    enum: [
+                        "car", "truck", "taxi", "bus", "van", "motorcycle"
+                    ]
+                },
+            },
+            required: [
+                "travelMode"
+            ]
+        },
+        uiSchema: {
+            "origin": window.catex.JSONSchema.uiSchema.GazetteerPoint,
+            "destination": window.catex.JSONSchema.uiSchema.GazetteerPoint,
+        }
+    }
+}
+
+function tomtomInputsPointsSchema() {
+    return {
+        schema: {
+            "type": "object",
+            "title": "Tomtom route",
+            "description": "Enter the settings for your route:",
+            "properties": {
+                "origin": {title: "Enter origin", ...window.catex.JSONSchema.schema.Point},
+                "destination": {title: "Enter destination", ...window.catex.JSONSchema.schema.Point},
+                "travelMode": {
+                    "title": "Select the mode",
+                    "description": "The mode to calculate the route",
+                    type: "string",
+                    default: "car",
+                    enum: [
+                        "car", "truck", "taxi", "bus", "van", "motorcycle"
+                    ]
+                },
+            },
+            required: [
+                "travelMode"
+            ]
+        },
+        uiSchema: {
+            "origin": window.catex.JSONSchema.uiSchema.Point,
+            "destination": window.catex.JSONSchema.uiSchema.Point,
+        }
+    }
+}
+
+
+function tomtomInputsSearchQuerySchema(bounds= false) {
     const useBoundsObject = bounds ? {
         "bounds": {title: "Enter Bounds", ...window.catex.JSONSchema.schema.BBox},
     } : {};
