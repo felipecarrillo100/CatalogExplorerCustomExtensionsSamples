@@ -45,7 +45,7 @@ window.catex = {
                             const point2 =
                                 o.features[1].shape.focusPoint;
                             const newCommand =
-                                TomTomAPIURLCommand([point1.y, point1.x], [point2.y, point2.x], 'TomTom route ');
+                                TomTomAPIURLCommand([point1.y, point1.x], [point2.y, point2.x], 'TomTom route');
                             window.catex.workspace.emitCommand(newCommand);
                         }
                     }
@@ -129,6 +129,10 @@ https://developer.tomtom.com/routing-api/documentation/routing/calculate-route
 ### Activity:
 In this activity you need to integrate the TomTom API for Points of Interest to find hospital within 2km from a point. The TomTom POI API supports many parameters let's limit to the following: lon, lat, radius.
 
+<strong>HINT:</strong> For more information about the TomTom POI API, visit:
+
+https://developer.tomtom.com/search-api/documentation/search-service/points-of-interest-search
+
 <strong>HINT:</strong> You will use the hook `featureLayer.onFeatureSelect` to detect a point selected.
 
 <strong>HINT:</strong> You will require a new Data Transformer `data:transformers`
@@ -163,8 +167,6 @@ The following code snippet illustrates how the data transformer looks like:
    }
 ]
 ```
-<strong>HINT:</strong> For more information about the TomTom POI API, visit:
-https://developer.tomtom.com/search-api/documentation/search-service/points-of-interest-search
 
 The cal to the TomTom API wil be done on the command:
 ```javascript
