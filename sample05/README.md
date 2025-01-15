@@ -168,7 +168,7 @@ The following code snippet illustrates how the data transformer looks like:
 ]
 ```
 
-The cal to the TomTom API wil be done on the command:
+The call to the TomTom POI API wil be done in the command, don't forget to set the `transformer` accordingly:
 ```javascript
 function TomTomPOIAPIURLCommand(point, query, radius, label) {
     const url = `https://api.tomtom.com/search/2/poiSearch/${query}.json?lat=${point[0]}&lon=${point[1]}&radius=${radius}&key=${tomtomkey}`;
