@@ -1,6 +1,34 @@
 const TomTomKey = "A9R38rS8rPA6NS1ARfwn24mgEMlCCQ9k";
 
 window.catex = {
+    featureLayer: {
+        onFeatureSelect: [
+            {
+                label: "Find along the route",
+                title: "Finds Points of Interest along a line",
+                validate: function(o){
+                    // Type 2 is a line
+                    return o.feature.shape.type === 2;
+                },
+                action: function (o, callback) {
+                    if (typeof callback === "function") {
+                        if (o.feature) {
+                            const coordinates = o.feature.shape.coordinates;
+                            const route = {
+                                route: {
+                                    points: coordinates.map(coordinate => ({lat: coordinate[1], lon: coordinate[0]}))
+                                }
+                            };
+                            const query = "gas station";
+                            const detourTime = 60*10;  // 10 Minutes
+                            const newCommand = TomTomPOIAlongTheWayAPIURLCommand(route, query, detourTime, 'Gas Stations');
+                            window.catex.workspace.emitCommand(newCommand);
+                        }
+                    }
+                }
+            },
+        ]
+    },
     app: {
         navbarActions: [
             {
@@ -388,6 +416,33 @@ function TomTomPOIAreaAPIURLCommand(topLeft, btmRight, query, label, autozoom= t
             "model": {
                 transformer: "TOMTOM-POI",
                 url
+            }
+        }
+    }
+}
+
+function TomTomPOIAlongTheWayAPIURLCommand(points, query, detourTime, label) {
+    const url = `https://api.tomtom.com/search/2/searchAlongRoute/${query}.json?maxDetourTime=${detourTime}&key=${TomTomKey}`;
+    return {
+        "action": 10,
+        "parameters": {
+            "action": "MemoryFeatureLayer",
+            "autozoom": true,
+            "layer": {
+                "label": label,
+                "selectable": true,
+                "editable": false,
+                painterSettings: generatePOIPainterSettings(query)
+            },
+            "model": {
+                transformer: "TOMTOM-POI",
+                url,
+                body: JSON.stringify(points),
+                method: "POST",
+                format: "GeoJSON",
+                requestHeaders: {
+                    "Content-Type": "application/json"
+                }
             }
         }
     }

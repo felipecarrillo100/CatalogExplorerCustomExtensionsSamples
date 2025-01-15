@@ -1,4 +1,4 @@
-const tomtomkey = "A9R38rS8rPA6NS1ARfwn24mgEMlCCQ9k";
+const TomTomKey = "A9R38rS8rPA6NS1ARfwn24mgEMlCCQ9k";
 
 window.catex = {
     featureLayer: {
@@ -88,7 +88,7 @@ window.catex = {
 }
 
 function TomTomRouteAPIURLCommand(point1, point2, label) {
-    const url = `https://api.tomtom.com/routing/1/calculateRoute/${point1[0]},${point1[1]}:${point2[0]},${point2[1]}/json?&vehicleHeading=90&sectionType=traffic&report=effectiveSettings&routeType=eco&traffic=true&avoid=unpavedRoads&travelMode=car&vehicleMaxSpeed=120&vehicleCommercial=false&vehicleEngineType=combustion&key=${tomtomkey}`;
+    const url = `https://api.tomtom.com/routing/1/calculateRoute/${point1[0]},${point1[1]}:${point2[0]},${point2[1]}/json?&vehicleHeading=90&sectionType=traffic&report=effectiveSettings&routeType=eco&traffic=true&avoid=unpavedRoads&travelMode=car&vehicleMaxSpeed=120&vehicleCommercial=false&vehicleEngineType=combustion&key=${TomTomKey}`;
     return {
         "action": 10,
         "parameters": {
@@ -108,7 +108,7 @@ function TomTomRouteAPIURLCommand(point1, point2, label) {
 }
 
 function TomTomPOIAPIURLCommand(point, query, radius, label) {
-    const url = `https://api.tomtom.com/search/2/poiSearch/${query}.json?lat=${point[0]}&lon=${point[1]}&radius=${radius}&key=${tomtomkey}`;
+    const url = `https://api.tomtom.com/search/2/poiSearch/${query}.json?lat=${point[0]}&lon=${point[1]}&radius=${radius}&key=${TomTomKey}`;
     return {
         "action": 10,
         "parameters": {
