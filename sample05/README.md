@@ -131,6 +131,7 @@ https://developer.tomtom.com/routing-api/documentation/routing/calculate-route
                 label: "Tomtom route",
                 title: "Calculate Route using Tomtom API",
                 validate: function(o){
+                    // The action will only show when 2 features are selected.
                     return o.features.length === 2;
                 },
                 action: function(o, callback) {
