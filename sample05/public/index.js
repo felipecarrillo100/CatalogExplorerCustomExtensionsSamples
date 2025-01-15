@@ -4,7 +4,7 @@ window.catex = {
     featureLayer: {
         onFeatureSelect: [
             {
-                label: "Tomtom POI",
+                label: "Find Hospitals",
                 title: "Finds Hospitals near a point",
                 action: function(o, callback) {
                     if (typeof callback === "function") {

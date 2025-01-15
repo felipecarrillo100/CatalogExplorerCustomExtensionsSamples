@@ -133,7 +133,7 @@ In this activity you need to integrate the TomTom API for Points of Interest to 
 
 https://developer.tomtom.com/search-api/documentation/search-service/points-of-interest-search
 
-<strong>HINT:</strong> You will use the hook `featureLayer.onFeatureSelect` to detect a point selected.
+<strong>HINT:</strong> You will use the hook `featureLayer.onFeatureSelect` to detect a point selected and define a new action called `Find Hospitals` and write the code required.
 
 <strong>HINT:</strong> You will require a new Data Transformer `data:transformers`
 
@@ -168,7 +168,7 @@ The following code snippet illustrates how the data transformer looks like:
 ]
 ```
 
-The call to the TomTom POI API wil be done in the command, don't forget to set the `transformer` accordingly:
+The call to the TomTom POI API wil be done in the command, don't forget to set the `transformer` accordingly. Your implementation should be something like this:
 ```javascript
 function TomTomPOIAPIURLCommand(point, query, radius, label) {
     const url = `https://api.tomtom.com/search/2/poiSearch/${query}.json?lat=${point[0]}&lon=${point[1]}&radius=${radius}&key=${tomtomkey}`;
@@ -190,6 +190,10 @@ function TomTomPOIAPIURLCommand(point, query, radius, label) {
     }
 }
 ```
+* Open a WFS for `City 125` as you did before. Right-click on a city and "Find Hospitals". The Hospitals around the selected city will be displayed.
+* Select the layer `Hospitals` from the layer control. Right-click it and select `Vector styling`, changed the icon to a `cross` and change the color to red with red borders. The hospitals will be show with a cross icon in the map.
+
+
 ### Optional Activity
 Combine this exercise with Exercise 3 to allow adding a TomTom map-tiles layer.
 <strong>HINT:</strong> Refer to `sample03` and copy/paste the required code
