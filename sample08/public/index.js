@@ -19,10 +19,7 @@ window.catex = {
                                     points: coordinates.map(coordinate => ({lat: coordinate[1], lon: coordinate[0]}))
                                 }
                             };
-                            const query = "gas station";
-                            const detourTime = 60*10;  // 10 Minutes
-                            const newCommand = TomTomPOIAlongTheWayAPIURLCommand(route, query, detourTime, 'Gas Stations', false);
-                            window.catex.workspace.emitCommand(newCommand);
+                            TomTomFindAlongTheWayForm(route);
                         }
                     }
                 }
@@ -108,7 +105,7 @@ window.catex = {
                                 title: "Finds a point of interest in the visible area of the map",
                                 id: "uid031",
                                 action: (o, callback)=>{
-                                    TomTomFindInMap();
+                                    TomTomFindInMapForm();
                                 }
                             }
                         ],
@@ -222,7 +219,7 @@ function TomTomRoutingGazetteer() {
     })
 }
 
-function TomTomFindInMap() {
+function TomTomFindInMapForm() {
     window.catex.workspace.createJSONSchemaForm(tomtomInputsSearchQuery(), {
         onCancel: ()=>{
             console.log('Cancel');
@@ -234,7 +231,28 @@ function TomTomFindInMap() {
             const newCommand = TomTomPOIAreaAPIURLCommand(
                 [bounds[3], bounds[0]],
                 [bounds[1], bounds[2]],
-                formData.query,
+                formData,
+                'Tomtom matches: ' + formData.query,
+                false
+            );
+            window.catex.workspace.emitCommand(newCommand);
+            window.catex.workspace.toastMessage({message:"Command submitted", type:"info"})
+        }
+    })
+}
+
+function TomTomFindAlongTheWayForm(route) {
+    window.catex.workspace.createJSONSchemaForm(tomtomInputsSearchQuery(), {
+        onCancel: ()=>{
+            console.log('Cancel');
+        },
+        onSuccess:(formData) => {
+            console.log(formData);
+            const map = window.catex.map.getMainMap();
+            const newCommand = TomTomPOIAlongTheWayAPIURLCommand(
+                route,
+                formData,
+                60*10,
                 'Tomtom matches: ' + formData.query,
                 false
             );
@@ -400,8 +418,8 @@ function TomTomAPIURLCommand (point1, point2, label, options) {
     }
 }
 
-function TomTomPOIAreaAPIURLCommand(topLeft, btmRight, query, label, autozoom= true) {
-    const url = `https://api.tomtom.com/search/2/poiSearch/${query}.json?topLeft=${topLeft[0]},${topLeft[1]}&btmRight=${btmRight[0]},${btmRight[1]}&key=${TomTomKey}`;
+function TomTomPOIAreaAPIURLCommand(topLeft, btmRight, formData, label, autozoom= true) {
+    const url = `https://api.tomtom.com/search/2/poiSearch/${formData.query}.json?limit=${formData.limit}&topLeft=${topLeft[0]},${topLeft[1]}&btmRight=${btmRight[0]},${btmRight[1]}&key=${TomTomKey}`;
     return {
         "action": 10,
         "parameters": {
@@ -411,7 +429,7 @@ function TomTomPOIAreaAPIURLCommand(topLeft, btmRight, query, label, autozoom= t
                 "label": label,
                 "selectable": true,
                 "editable": false,
-                painterSettings: generatePOIPainterSettings(query),
+                painterSettings: generatePOIPainterSettings(formData.query),
             },
             "model": {
                 transformer: "TOMTOM-POI",
@@ -421,8 +439,8 @@ function TomTomPOIAreaAPIURLCommand(topLeft, btmRight, query, label, autozoom= t
     }
 }
 
-function TomTomPOIAlongTheWayAPIURLCommand(points, query, detourTime, label, autozoom=true) {
-    const url = `https://api.tomtom.com/search/2/searchAlongRoute/${query}.json?maxDetourTime=${detourTime}&key=${TomTomKey}`;
+function TomTomPOIAlongTheWayAPIURLCommand(route, formData, detourTime, label, autozoom=true) {
+    const url = `https://api.tomtom.com/search/2/searchAlongRoute/${formData.query}.json?maxDetourTime=${detourTime}&limit=${formData.limit}&spreadingMode=plan&key=${TomTomKey}`;
     return {
         "action": 10,
         "parameters": {
@@ -432,12 +450,12 @@ function TomTomPOIAlongTheWayAPIURLCommand(points, query, detourTime, label, aut
                 "label": label,
                 "selectable": true,
                 "editable": false,
-                painterSettings: generatePOIPainterSettings(query)
+                painterSettings: generatePOIPainterSettings(formData.query)
             },
             "model": {
                 transformer: "TOMTOM-POI",
                 url,
-                body: JSON.stringify(points),
+                body: JSON.stringify(route),
                 method: "POST",
                 format: "GeoJSON",
                 requestHeaders: {
@@ -464,14 +482,26 @@ function tomtomInputsSearchQuery() {
                         "hospitals", "police", "airports", "firefighters", "gas station", "train"
                     ]
                 },
+                "limit": {
+                    "title": "Limit",
+                    "description": "Maximum number to find",
+                    type: "number",
+                    default: 10,
+                    minimum: 1,
+                    maximum: 20
+                },
             },
             required: [
                 "query"
             ]
         },
         uiSchema: {
-            "origin": window.catex.JSONSchema.uiSchema.Point,
-            "destination": window.catex.JSONSchema.uiSchema.Point,
+            "limit": {
+                "ui:widget": "range",
+                'ui:options': {
+                    inputType: 'range',
+                },
+            },
         }
     }
 }
