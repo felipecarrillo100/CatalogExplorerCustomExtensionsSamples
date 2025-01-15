@@ -118,6 +118,18 @@ npm install
 npm start
 ```
 
+Once running you need to configure CatalogExplorer custom extensions to retrive the Javascript and CSS from these locations:
+
+JavaScript (CDN):
+```
+http://localhost:5000/index.js
+```
+
+CSS (CDN):
+```
+http://localhost:5000/index.css
+```
+
 ## To Build
 ```
 npm run build
@@ -130,15 +142,4 @@ Once you have generated your bundle you can copy the files to any webserver and 
 npm run serve
 ```
 
-Once running you need to configure CatalogExplorer custom extensions to retrive the Javascript and CSS from these locations:
-
-JavaScript (CDN):
-```
-http://localhost:5000/index.js
-```
-
-CSS (CDN):
-```
-http://localhost:5000/index.css
-```
 
