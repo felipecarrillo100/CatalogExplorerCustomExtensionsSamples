@@ -8,7 +8,7 @@ mention that there are hundreds of libraries already available that provide modu
 you can incorporate directly into your application with little intrusion to your code design.
 
 Once you have Webpack in place adding React is quite simple. We only need to modify our webpack
-configuration to add a React loader and include the React libraries as a dependency in our package.json.
+configuration to add a React loader and include the React libraries as a dependency in our package.json. You can use the provided `webpack.config.js` as a reference.
 
 The intention of this training is not to make you a React expert; therefore, we will provide you with the
 code required for this exercise. But you can of course experiment yourself and try your own ideas on top
