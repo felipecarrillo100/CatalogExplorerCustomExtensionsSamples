@@ -40,12 +40,9 @@ window.catex = {
                 if (typeof callback === "function") {
                     if (o.features) {
                         if (o.features.length == 2) {
-                            const point1 =
-                                o.features[0].shape.focusPoint;
-                            const point2 =
-                                o.features[1].shape.focusPoint;
-                            const newCommand =
-                                TomTomAPIURLCommand([point1.y, point1.x], [point2.y, point2.x], 'TomTom route');
+                            const point1 = o.features[0].shape.focusPoint;
+                            const point2 = o.features[1].shape.focusPoint;
+                            const newCommand = TomTomRouteAPIURLCommand([point1.y, point1.x], [point2.y, point2.x], 'TomTom route');
                             window.catex.workspace.emitCommand(newCommand);
                         }
                     }
@@ -85,7 +82,7 @@ window.catex = {
     }
 }
 
-function TomTomAPIURLCommand(point1, point2, label) {
+function TomTomRouteAPIURLCommand(point1, point2, label) {
     const tomtomkey = "api_key_placeholder";
     const url = `https://api.tomtom.com/routing/1/calculateRoute/${point1[0]},${point1[1]}:${point2[0]},${point2[1]}/json?&vehicleHeading=90&sectionType=traffic&report=effectiveSettings&routeType=eco&traffic=true&avoid=unpavedRoads&travelMode=car&vehicleMaxSpeed=120&vehicleCommercial=false&vehicleEngineType=combustion&key=${tomtomkey}`;
     return {
