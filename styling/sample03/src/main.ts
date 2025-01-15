@@ -19,9 +19,9 @@ export function setCatex(catex: Catex) {
 setCatex({
     app: {
         onAppReady: ()=> {
-            const logoArray = document.querySelector("img.navbar-brandIcon");
-            if (logoArray && logoArray instanceof HTMLImageElement) {
-                logoArray.src = logo
+            const logoElement = document.querySelector("img.navbar-brandIcon");
+            if (logoElement && logoElement instanceof HTMLImageElement) {
+                logoElement.src = logo
             }
             const primaryColor = localStorage.getItem("app-primary-color");
             if (primaryColor) {
