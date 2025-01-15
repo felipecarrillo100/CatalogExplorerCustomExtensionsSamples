@@ -33,7 +33,7 @@ window.catex = {
                 title: "Demo of JSON Schema capabilities",
                 id: "uid01",
                 action: (o, callback)=>{
-                    MyJSONSchemademo();
+                    MyJSONSchemaDemoForm();
                 }
             },
             {
@@ -188,7 +188,7 @@ function tomtomLayerCommand(layerName)  {
     }
 }
 
-function MyJSONSchemademo() {
+function MyJSONSchemaDemoForm() {
     window.catex.workspace.createJSONSchemaForm(aboutYouFormSchema(), {
         onChange: (formData)=> {
             //  console.log(JSON.stringify(formData, null, 2));
@@ -199,7 +199,7 @@ function MyJSONSchemademo() {
         },
         onSuccess:(formData) => {
             console.log('Success',JSON.stringify(formData, null, 2));
-            window.catex.workspace.toastMessage({message:"Command submitted", type:"info"})
+            window.catex.workspace.toastMessage({message:`Your name is: ${formData.Firstname}`, type:"info"})
         }
     })
 }
@@ -393,12 +393,12 @@ function aboutYouFormSchema() {
             "type": "object",
             "title": "About you",
             "properties": {
-                "Lastname": {
-                    "title": "Enter your lastname",
-                    "type": "string"
-                },
                 "Firstname": {
                     "title": "Enter your firstname",
+                    "type": "string"
+                },
+                "Lastname": {
+                    "title": "Enter your lastname",
                     "type": "string"
                 },
                 "Age": {
@@ -414,7 +414,10 @@ function aboutYouFormSchema() {
                     "maximum": 100000,
                     "multipleOf": 10000
                 }
-            }
+            },
+            required: [
+                "Firstname"
+            ]
         }
         ,
         uiSchema: {

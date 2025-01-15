@@ -61,10 +61,7 @@ function MyJSONSchemademoForm() {
         },
         onSuccess: (formData) => {
             console.log("Success", JSON.stringify(formData, null, 2));
-            window.catex.workspace.toastMessage({
-                message: "Command submitted",
-                type: "info"
-            })
+            window.catex.workspace.toastMessage({message:`Your name is: ${formData.Firstname}`, type:"info"});
         }
     })
 }
@@ -76,12 +73,12 @@ function aboutYouFormSchema() {
             "type": "object",
             "title": "About you",
             "properties": {
-                "Lastname": {
-                    "title": "Enter your lastname",
-                    "type": "string"
-                },
                 "Firstname": {
                     "title": "Enter your firstname",
+                    "type": "string"
+                },
+                "Lastname": {
+                    "title": "Enter your lastname",
                     "type": "string"
                 },
                 "Age": {
