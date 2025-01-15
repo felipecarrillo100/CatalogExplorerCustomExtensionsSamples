@@ -122,13 +122,75 @@ https://sampleservices.luciad.com/wfs
 * The context menu includes the action "Tomtom route" that you defined.
 * Clicking on the action calls the Tomtom API, and the response is displayed on the screen.
 
-### Activity:
-Combine this exercise with Exercise 2 to incorporate a TomTom maptiles layer below the TomTom
-calculated route.
-
 <strong>HINT:</strong> For more information about the TomTom route API, visit:
 
 https://developer.tomtom.com/routing-api/documentation/routing/calculate-route
+
+### Activity:
+In this activity you need to integrate the TomTom API for Points of Interest to find hospital within 2km from a point. The TomTom POI API supports many parameters let's limit to the following: lon, lat, radius.
+
+<strong>HINT:</strong> You will use the hook `featureLayer.onFeatureSelect` to detect a point selected.
+
+<strong>HINT:</strong> You will require a new Data Transformer `data:transformers`
+
+The following code snippet illustrates how the data transformer looks like:
+```shell
+[
+  ...otherDataTransformers,
+   {
+       name: "TOMTOM-POI",
+       extensions: "json",
+       transform: (dataStr) => {
+           const tomtomResponse = JSON.parse(dataStr);
+           const features = [];
+           if (tomtomResponse.results.length > 0) {
+               for (let result of tomtomResponse.results) {
+                   const coordinates = [result.position.lon, result.position.lat];
+                   const geometry = { type: 'Point', coordinates};
+                   const feature = {
+                       id: result.id,
+                       type: "Feature",
+                       geometry: geometry,
+                       properties: result.poi
+                   }
+                   features.push(feature);
+               }
+           } else {
+               window.catex.workspace.toastMessage({message: "No matches found", type: "warning"})
+           }
+           return JSON.stringify(features);
+       }
+   }
+]
+```
+<strong>HINT:</strong> For more information about the TomTom POI API, visit:
+https://developer.tomtom.com/search-api/documentation/search-service/points-of-interest-search
+
+The cal to the TomTom API wil be done on the command:
+```javascript
+function TomTomPOIAPIURLCommand(point, query, radius, label) {
+    const url = `https://api.tomtom.com/search/2/poiSearch/${query}.json?lat=${point[0]}&lon=${point[1]}&radius=${radius}&key=${tomtomkey}`;
+    return {
+        "action": 10,
+        "parameters": {
+            "action": "MemoryFeatureLayer",
+            "autozoom": true,
+            "layer": {
+                "label": label,
+                "selectable": true,
+                "editable": false
+            },
+            "model": {
+                transformer: "TOMTOM-POI",
+                url
+            }
+        }
+    }
+}
+```
+### Optional Activity
+Combine this exercise with Exercise 3 to allow adding a TomTom map-tiles layer.
+<strong>HINT:</strong> Refer to `sample03` and copy/paste the required code
 
 ## Run the solution
 
