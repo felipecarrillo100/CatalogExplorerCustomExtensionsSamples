@@ -28,16 +28,50 @@ code into a single index.js file and bundle all styles into a single index.css f
 ![Webpack](./webpack.png "Webpack")
 
 To use the webpack development server we need to make sure the bundler exposes the in-memory
-index.js and index.css in full together with the source maps. We also need to make sure that the CORS is
-enabled.
+index.js and index.css in full together with the source maps. 
 
+We also need to make sure that the `CORS` is enabled. This can be done by properly configuring the headers in the development 
+server `devserver`  in the webpack.config.js to allow all origins:
+```javascript
+{
+   ...otherSettings,
+   devServer: {
+      port: 5000,
+      open: false,
+      headers: {
+         "Access-Control-Allow-Origin": "*",
+         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+         "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+      }
+   },
+}
+```
+
+Also notice that our bundler needs to produce two output files: index.js and index.css
+This can be achieved with:
+
+For `index.js`
+```javascript
+output: {
+   path: path.resolve(__dirname, 'dist/customextension'),
+   filename: 'index.js',
+   chunkFilename: '[name].chunk.js',
+},
+```
+For `index.css`
+```javascript
+new MiniCssExtractPlugin({
+   filename: 'index.css',
+   chunkFilename: '[name].[chunkhash].chunk.css',
+})
+```
 
 ## Procedure
 1. Go to folder sample09. You will notice already contains a webpack project defined in
-   “webpack.config.js” which contains all the required settings
-2. Typescript has also been configured as you seen in the file tsconfig.json, You will notice also that the
-   folder interfaces contain the file catex.ts with all the type definitions required by Custom Extensions
-3. Basic linting has also been configured (optional) eslintrc.js
+   `webpack.config.js` which contains all the required settings
+2. Typescript has also been configured as you see in the file `tsconfig.json`, You will notice also that the
+   folder interfaces contain the latest `catex.ts` with all the type definitions required by Custom Extensions
+3. Basic linting has also been configured (optional) `eslintrc.js`
 4. To run this project type
 ```shell
    npm install
@@ -57,16 +91,19 @@ enabled.
 ```shell
    npm run build
 ```
-   Your index.js and index.css will be placed inside the dist/customextension folder. You can simply
-   copy those files to your production web server and they are ready to use
+   Your `index.js` and `index.css` will be placed inside the `dist/customextension` folder. You can simply
+   copy those files to your production web server, and they are ready to use
 
 ## Activity
 Run webpack in development mode and make some changes, for instance add a new action that displays
-a form using JSON Schema asking for name, date of birth, address, and phone. Place the code of your
-action in a separate file to test the modularity. Add a third-party library to your project using “npm install”
+a form using JSON Schema asking for name, date of birth, address, and phone. 
 
-<strong>HINT:</strong> The main file (entry point) is located at `src/index.ts`. This is your starting point, modify it at your
-convenience and try to split your code into modules.
+Place the code of your action in a separate file to test the modularity. 
+
+Add a third-party library to your project using `npm install`
+
+<strong>HINT:</strong> The main file (entry point) is located at `src/index.ts`. 
+This is your starting point, modify it at your convenience and try to split your code into modules.
 
 
 # Run Solution
