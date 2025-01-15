@@ -191,7 +191,8 @@ function TomTomPOIAPIURLCommand(point, query, radius, label) {
 }
 ```
 * Open a WFS for `City 125` as you did before. Right-click on a city and "Find Hospitals". The Hospitals around the selected city will be displayed.
-* Select the layer `Hospitals` from the layer control. Right-click it and select `Vector styling`, changed the icon to a `cross` and change the color to red with red borders. The hospitals will be show with a cross icon in the map.
+* Select the layer `Hospitals` from the layer control. Right-click it and select `Vector styling`, changed the icon to a `cross` and change the color to red with red borders. The hospitals will be shown with a cross icon in the map.
+* Select `Vector styling` one more time for hospitals, and select `Label Style`  and set the `property` to `name`, the name of the hospital will be show next to the icon.
 
 
 ### Optional Activity

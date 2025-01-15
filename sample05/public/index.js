@@ -113,7 +113,8 @@ function TomTomPOIAPIURLCommand(point, query, radius, label) {
             "layer": {
                 "label": label,
                 "selectable": true,
-                "editable": false
+                "editable": false,
+                painterSettings
             },
             "model": {
                 transformer: "TOMTOM-POI",
@@ -123,3 +124,4 @@ function TomTomPOIAPIURLCommand(point, query, radius, label) {
     }
 }
 
+const painterSettings = {"commons":{"balloon":false,"heatmap":{"enabled":false,"maximum":20,"normalizedGradient":[{"level":0,"color":"rgba( 0 , 0 , 255, 0.9)"},{"level":0.25,"color":"rgba( 0 , 255 , 255, 0.9)"},{"level":0.5,"color":"rgba( 0 , 255 , 0, 0.9)"},{"level":0.75,"color":"rgba( 255 , 255 , 0, 0.9)"},{"level":1,"color":"rgba( 255 , 0 , 0, 0.9)"}]}},"default":{"labelStyle":{"background":{"fill":{"color":"rgba(138, 200, 255, 0)"},"stroke":{"color":"rgba(138, 200, 255, 0)"}},"case":"none","font":{"bold":true,"fontFamily":"'Times New Roman', Times, serif","fontSize":"14px","italic":false,"underline":false},"labelProperty":"name","stroke":{"color":"rgb(176,25,116)"}},"lineStyle":{"draped":true,"drapeTarget":1,"stroke":{"color":"rgb(138, 200, 255)","dashIndex":"solid","width":2}},"pointStyle":{"draped":true,"drapeTarget":1,"fill":{"color":"rgba(93,50,32,0.8)"},"heading":{"default":"","property":"","scale":1},"shape":"cross","size":{"height":24,"width":24},"anchorX":"","anchorY":"","stroke":{"color":"rgba(204,99,30,1)","width":1},"url":"","uom":"Pixels"},"shapeStyle":{"draped":true,"drapeTarget":1,"fill":{"color":"rgba(255, 0, 0, 0.6)"},"stroke":{"color":"rgb(255, 255, 0)","dashIndex":"solid","width":2},"extruded":{"type":"Flat","height":{"property":"","scale":1},"minHeight":{"property":"","scale":1}}}},"painterType":"DefaultPainter","selected":{"labelStyle":{"background":{"fill":{"color":"rgba(138, 200, 255, 0.8)"},"stroke":{"color":"rgba(138, 200, 255, 0.8)"}},"case":"none","color":"rgba(0,0,255,1)","font":{"bold":true,"fontFamily":"'Times New Roman', Times, serif","fontSize":"14px","italic":false,"underline":false},"labelProperty":"name","stroke":{"color":"rgb(176,25,116)"}},"lineStyle":{"draped":true,"drapeTarget":1,"stroke":{"color":"rgb(0, 128, 256)","dashIndex":"solid","width":2}},"pointStyle":{"draped":true,"drapeTarget":1,"fill":{"color":"rgba(255, 200, 255, 0.8)"},"heading":{"default":"","property":"","scale":1},"shape":"cross","size":{"height":18,"width":18},"anchorX":"","anchorY":"","stroke":{"color":"rgba(146,24,48,1)","width":1},"url":"","uom":"Pixels"},"shapeStyle":{"fill":{"color":"rgba(0, 255, 0, 0.6)"},"stroke":{"color":"rgb(255, 255, 255)","dashIndex":"solid","width":2},"extruded":{"type":"Flat","height":{"property":"","scale":1},"minHeight":{"property":"","scale":1}},"drapeTarget":0}}};
