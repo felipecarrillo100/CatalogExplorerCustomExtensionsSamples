@@ -33,16 +33,15 @@ By the conclusion of this training, you will have the ability to:
 * Apply custom styling witg CSS
 
 ## Installation
+
 To be able to execute this samples you will require a copy of Catalog Explorer. You can get a Docker version of Catalog Explorer. To run this simply type:
 
 ```shell
 docker compose up
 ```
 
-If decide not to use docker then you will need to manually install all the dependencies.
+If you decide not to use docker then you will need to manually install all the dependencies (Postgres 15, Java 17, Tomcat 10).
 
-<strong>NOTE:</strong> If you are using a Catalog Explorer instance that has been installed and configured with ERDAS
-APOLLO, you can skip over this section.
 
 Follow these steps to configure a standalone instance of Catalog Explorer.
 
@@ -56,7 +55,6 @@ Follow these steps to configure a standalone instance of Catalog Explorer.
      * Password: trident 
    * Create a database named "tridentdb9" and set the owner as user "trident".
 2. Install Java VM
-
    * Download the latest version of OpenJDK from: https://jdk.java.net/archive/
    * Install OpenJDK 11 or higher (OpenJDK 17 recommended). Unzip the downloaded file in your
    preferred location, usually: C:\Program Files\Java\.
