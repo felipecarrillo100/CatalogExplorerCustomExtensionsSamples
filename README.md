@@ -109,9 +109,9 @@ NOTE: The default username and password are admin / adminPass.
    https://sampleservices.luciad.com/wfs
    
    * c. Add a TMS Layer: 
-   
+```shell
    https://{s}.tile.openstreetmap.org/{z}/{x}/{-y}.png
-   
+```    
    * Another example of TMS
 ```
    https://{s}.api.tomtom.com/map/1/tile/basic/main/{z}/{x}/{-y}.png?key=A9R38rS8rPA6NS1ARfwn24mgEMlCCQ9k&tileSize=256
