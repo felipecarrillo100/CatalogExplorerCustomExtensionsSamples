@@ -120,6 +120,30 @@ https://sampleservices.luciad.com/wfs
 
    https://developer.tomtom.com/map-display-api/documentation/raster/map-til
 
+* d. Add a 3dTiles layer:
+```
+https://sampleservices.luciad.com/ogc/3dtiles/outback/tileset.json
+```
+* e. Add a Panorama:
+```
+https://sampledata.luciad.com/data/panoramics/LucernePegasus/cubemap_final.json
+```
+* f. Add a mesh:
+```
+https://sampledata.luciad.com/data/ogc3dtiles/LucerneAirborneMesh/tileset.json
+```
+* Another mesh example:
+```
+https://sampledata.luciad.com/data/ogc3dtiles/outback_PBR_Draco/tileset.json
+```
+* g. Add a GeoJSON file:
+```
+https://raw.githubusercontent.com/felipecarrillo100/geojsonrepo/master/world.json
+```
+
+Hint: Click the “Get layers” button to retrieve information from the URL. Once retrieved, select
+your preferences, and then click “Add layer” to incorporate the layer into the map.
+
 3. Save all your layers into a workspace.
 
    Hint: Your account menu is situated in the top right corner. From there, navigate to Workspace ->
