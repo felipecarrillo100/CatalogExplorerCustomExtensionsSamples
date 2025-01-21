@@ -101,15 +101,15 @@ NOTE: The default username and password are admin / adminPass.
    Hint: Click on “Save changes” to make your changes permanent.
 2. From the Data menu, add some new layers:
    * a. Add a WMS layer:
-   
-   https://sampleservices.luciad.com/wms
-   
+```
+https://sampleservices.luciad.com/wms
+``` 
    * b. Add a WFS layer: 
-   
-   https://sampleservices.luciad.com/wfs
-   
+```
+https://sampleservices.luciad.com/wfs
+```
    * c. Add a TMS Layer: 
-```shell
+```
    https://{s}.tile.openstreetmap.org/{z}/{x}/{-y}.png
 ```    
    * Another example of TMS
@@ -121,8 +121,10 @@ NOTE: The default username and password are admin / adminPass.
    https://developer.tomtom.com/map-display-api/documentation/raster/map-til
 
 3. Save all your layers into a workspace.
+
    Hint: Your account menu is situated in the top right corner. From there, navigate to Workspace ->
    Save As, and provide a name and description for your workspace.
+
 4. Go to the admin dashboard using the top right corner menu or use this URL:
 
    http://localhost:8080/catalogexplorer/admin
