@@ -83,14 +83,14 @@ options. To do this, add: `-Dfile.encoding=utf-8`
    http://localhost:8080/manager/html
    
    * Wait for Catalog Explorer to load, then log in using: 
-   http://localhost:8080/catalogexplore
+   http://localhost:8080/catalogexplorer
 
 ## Exploring Catalog Explorer
 
 In this training, we will begin by familiarizing ourselves with some of the key features of Catalog Explorer.
 To get started, please log in to Catalog Explorer using the following link in your web browser:
 
-http://localhost:8080/catalogexplorer.
+http://localhost:8080/catalogexplorer
 
 NOTE: The default username and password are admin / adminPass.
 
