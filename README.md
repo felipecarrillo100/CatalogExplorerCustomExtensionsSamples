@@ -34,14 +34,19 @@ By the conclusion of this training, you will have the ability to:
 
 ## Installation
 
-To be able to execute this samples you will require a copy of Catalog Explorer. You can get a Docker version of Catalog Explorer. To run this simply type:
+To be able to execute this samples you will require a copy of Catalog Explorer. You can get a Docker version of Catalog Explorer or you can deploy it manually.
+
+### Docker version 
+To run the docker version simply go to the folder containing the `docker-compose.yml` and type:
 
 ```shell
 docker compose up
 ```
 
-If you decide not to use docker then you will need to manually install all the dependencies (Postgres, Java, Tomcat).
+Now you are ready to go. You can skip the `Manual deployment` section
 
+### Manual deployment 
+If you decide not to use docker then you will need to manually install all the dependencies (Postgres, Java, Tomcat).
 
 Follow these steps to configure a standalone instance of Catalog Explorer.
 
