@@ -60,37 +60,41 @@ Follow these steps to configure a standalone instance of Catalog Explorer.
    * Download the latest version of OpenJDK from: https://jdk.java.net/archive/
    * Install OpenJDK 11 or higher (OpenJDK 17 recommended). Unzip the downloaded file in your
    preferred location, usually: C:\Program Files\Java\.
-3. Install Tomcat 9
-   * Download Tomcat 9 from: https://tomcat.apache.org/download-90.cgi
-   * Note: Catalog Explorer is not compatible with Tomcat 10.
+3. Install Tomcat 10
+   * Download Tomcat 10 from: https://tomcat.apache.org/download-10.cgi
+   * Note: Catalog Explorer requires Tomcat 10.
    * Use the Windows Service Installer for installation.
    * Create an Administrator user and save your username and password for step 4.
    * Hint: During installation, specify the Java OpenJDK installation path from step 2.
    * Verify Tomcat is running by accessing the Tomcat Web UI at: http://localhost:8080/
    * If you intend to utilize the multi-language support feature, ensure that you enable it in your Java
-options. To do this, add: -Dfile.encoding=utf-8.
+options. To do this, add: `-Dfile.encoding=utf-8`
    
 4. Deploy Catalog Explorer in Tomcat
 
    * Download the Catalog Explorer WAR file provided during training.
-   * Copy the WAR file to: C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps
+   * Copy the WAR file to: `C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps`
    * Log in to Tomcat Web UI using the credentials created in step 3 and start the Catalog Explorer
    service.
-   * Access Catalog Explorer via: http://localhost:8080/manager/html
-   * Wait for Catalog Explorer to load, then log in using: http://localhost:8080/catalogexplore
+   * Access Catalog Explorer via: 
+   http://localhost:8080/manager/html
+   
+   * Wait for Catalog Explorer to load, then log in using: 
+   http://localhost:8080/catalogexplore
 
 ## Exploring Catalog Explorer
 
 In this training, we will begin by familiarizing ourselves with some of the key features of Catalog Explorer.
 To get started, please log in to Catalog Explorer using the following link in your web browser:
+
 http://localhost:8080/catalogexplorer.
 
 NOTE: The default username and password are admin / adminPass.
 
 1. From the Preferences menu:
-   a. Set default projection to 3d.
-   b. Set your preferred units (meters/miles).
-   c. Set your preferred language.
+   * a. Set default projection to 3d.
+   * b. Set your preferred units (meters/miles).
+   * c. Set your preferred language.
    Hint: Click on “Save changes” to make your changes permanent.
 2. From the Data menu, add some new layers:
    * a. Add a WMS layer: 
