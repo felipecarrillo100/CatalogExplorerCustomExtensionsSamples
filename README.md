@@ -180,7 +180,7 @@ http://localhost:8080/catalogexplorer/home/?debug=true
 Now, try adding some layers or loading workspaces. Then, check the console for the commands.
 
 <strong>Hint:</strong> The command is essentially a JSON object that begins with the property `Action`. For example,
-setting Action=10 corresponds to creating a layer, while setting Action=3 corresponds to restoring a
+setting `Action=10` corresponds to creating a layer, while setting `Action=3` corresponds to restoring a
 workspace. Instead of memorizing commands, you can utilize the debug mode to generate commands
 that you can later replay in your "Custom Extensions" by copying and pasting the command, editing it as
 necessary
