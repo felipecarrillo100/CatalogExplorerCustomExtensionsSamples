@@ -98,7 +98,7 @@ NOTE: The default username and password are `admin` / `adminPass`.
    * a. Set default projection to 3d.
    * b. Set your preferred units (meters/miles).
    * c. Set your preferred language.
-   Hint: Click on “Save changes” to make your changes permanent.
+   Hint: Click on `Save changes` to make your changes permanent.
 2. From the Data menu, add some new layers:
    * a. Add a WMS layer:
 ```
