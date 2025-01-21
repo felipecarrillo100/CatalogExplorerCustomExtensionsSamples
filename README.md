@@ -156,7 +156,7 @@ your preferences, and then click “Add layer” to incorporate the layer into t
    Set your Bing maps token from Settings->Gazetteer->Bing maps Key
    Hint: You can learn more about how to acquire a Bing maps key at this website:
 
-   https://learn.microsoft.com/en-us/bingmaps/getting-started/bing-maps-dev-center-help/getting-a-bingmaps-key
+   https://learn.microsoft.com/en-us/bingmaps/getting-started/bing-maps-dev-center-help/getting-a-bing-maps-key
 
 ## Catalog Explorer Architecture
 The Catalog Explorer user interface comprises a series of components arranged hierarchically, structured
