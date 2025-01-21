@@ -15,10 +15,10 @@ enhance the existing array of features within Catalog Explorer.
 ### Target audience
 This training is aimed at the following:
 
-* Developers that desire to add functionalities to Catalog Explorer
+* Developers that desire to add customized features to Catalog Explorer
 * Presales that wish to understand the capabilities provided by Custom Extensions
 
-NOTE: Sample00 to Sample12 focus on JavaScript development, while samples in styling folder focus on CSS styling.
+NOTE: Main folder `sample00` to `sample12` focus on JavaScript development, while samples in `styling` folder focus on CSS styling.
 
 
 ### Objectives
@@ -30,7 +30,7 @@ By the conclusion of this training, you will have the ability to:
 * Connect to a custom backend.
 * Add custom forms.
 * Integrate development with Webpack and React
-* Apply custom styling
+* Apply custom styling witg CSS
 
 ## Installation
 To be able to execute this samples you will require a copy of Catalog Explorer. You can get a Docker version of Catalog Explorer. To run this simply type:
