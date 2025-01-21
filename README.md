@@ -92,7 +92,7 @@ To get started, please log in to Catalog Explorer using the following link in yo
 
 http://localhost:8080/catalogexplorer
 
-NOTE: The default username and password are admin / adminPass.
+NOTE: The default username and password are `admin` / `adminPass`.
 
 1. From the Preferences menu:
    * a. Set default projection to 3d.
@@ -141,7 +141,7 @@ https://sampledata.luciad.com/data/ogc3dtiles/outback_PBR_Draco/tileset.json
 https://raw.githubusercontent.com/felipecarrillo100/geojsonrepo/master/world.json
 ```
 
-Hint: Click the “Get layers” button to retrieve information from the URL. Once retrieved, select
+Hint: Click the `Get layers` button to retrieve information from the URL. Once retrieved, select
 your preferences, and then click “Add layer” to incorporate the layer into the map.
 
 3. Save all your layers into a workspace.
@@ -172,14 +172,14 @@ Workspace, and finally to the Map. These commands can be triggered from the Navb
 programmatically from your custom extension.
 
 Instead of providing an extensive list of available commands, we offer a debug mode that prints the
-commands to the console. To activate debug mode, simply add “debug=true” to the URL as a query
+commands to the console. To activate debug mode, simply add `debug=true` to the URL as a query
 parameter. For this exercise, use the following URL to enter debug mode:
 
 http://localhost:8080/catalogexplorer/home/?debug=true
 
 Now, try adding some layers or loading workspaces. Then, check the console for the commands.
 
-<strong>Hint:</strong> The command is essentially a JSON object that begins with the property "Action." For example,
+<strong>Hint:</strong> The command is essentially a JSON object that begins with the property `Action`. For example,
 setting Action=10 corresponds to creating a layer, while setting Action=3 corresponds to restoring a
 workspace. Instead of memorizing commands, you can utilize the debug mode to generate commands
 that you can later replay in your "Custom Extensions" by copying and pasting the command, editing it as
