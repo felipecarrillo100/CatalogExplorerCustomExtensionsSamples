@@ -118,7 +118,7 @@ https://sampleservices.luciad.com/wfs
 ``` 
    For more info about the TomTom service, go to:
 
-   https://developer.tomtom.com/map-display-api/documentation/raster/map-til
+https://developer.tomtom.com/map-display-api/documentation/raster/map-tile
 
 * d. Add a 3dTiles layer:
 ```
