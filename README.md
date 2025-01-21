@@ -4,7 +4,7 @@
 This project provides a hands-on tutorial to develop Custom Extensions for Catalog Explorer.
 
 ## Scope
-This training exercises serve as an introduction to Custom Extensions, a feature of Catalog
+These training exercises serve as an introduction to Custom Extensions, a feature of Catalog
 Explorer. With Custom Extensions, users can run personalized JavaScript code in response to events
 triggered within Catalog Explorer. This feature empowers users to expand Catalog Explorer's
 functionalities, such as integrating with external REST APIs or their own backend systems. 
@@ -56,13 +56,13 @@ Follow these steps to configure a standalone instance of Catalog Explorer.
    * Recommended version: 15.5 (use Postgres 10 or higher).
    * Configure Postgres using pgAdmin.
    * Create a Postgres User named "trident" with login privileges:
-     * Username: trident
-     * Password: trident 
-   * Create a database named "tridentdb9" and set the owner as user "trident".
+     * Username: `trident`
+     * Password: `trident` 
+   * Create a database named `tridentdb9` and set the owner as user `trident`.
 2. Install Java VM
    * Download the latest version of OpenJDK from: https://jdk.java.net/archive/
    * Install OpenJDK 11 or higher (OpenJDK 17 recommended). Unzip the downloaded file in your
-   preferred location, usually: C:\Program Files\Java\.
+   preferred location, usually: `C:\Program Files\Java\`.
 3. Install Tomcat 10
    * Download Tomcat 10 from: https://tomcat.apache.org/download-10.cgi
    * Note: Catalog Explorer requires Tomcat 10.
