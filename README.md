@@ -14,8 +14,9 @@ enhance the existing array of features within Catalog Explorer.
 
 ### Target audience
 This training is aimed at the following:
-• Developers that desire to add functionalities to Catalog Explorer
-• Presales that wish to understand the capabilities provided by Custom Extensions
+
+* Developers that desire to add functionalities to Catalog Explorer
+* Presales that wish to understand the capabilities provided by Custom Extensions
 
 NOTE: Sample00 to Sample12 focus on JavaScript development, while samples in styling folder focus on CSS styling.
 
