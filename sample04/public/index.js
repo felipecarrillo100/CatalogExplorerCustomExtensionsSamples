@@ -12,7 +12,9 @@ window.catex = {
                 label: "Show in balloon single selected feature",
                 title: "Hint for single selected feature",
                 action: (parameters, callback) => {
-                    callback({...parameters.feature.properties, newValue: "From Custom extension"})
+                    callserver(parameters.feature.id).then((data)=>{
+                        callback({...parameters.feature.properties, maintenaceDate: data.maintenaceDate})
+                    })
                 }
             }
         ],

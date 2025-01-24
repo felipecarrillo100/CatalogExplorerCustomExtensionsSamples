@@ -17,17 +17,17 @@ Let's reuse the code we wrote in sample05
    http://localhost:3000/index.js
 3. Inside the folder, called sample07, create a project using npm init, take all the defaults from the prompt
 ```shell
-   npm init
+npm init
 ```
 4. Installed the required dependencies for our node project.
 
 The Library `express` is used to create web applications and APIs in NodeJS, while `cors` is a library that easily enables CORS in our application
 ```shell
-   npm install express cors
+npm install express cors
 ```
 Library `@turf/turf` provides many geospatial operations
 ```shell
-   npm install @turf/turf
+npm install @turf/turf
 ```
 5. In the sample code below, a REST endpoint is created to receive the collection of points in a POST
    request. The collection of points is a JSON array in the body of the HTTP request.
@@ -118,7 +118,7 @@ large amounts of data, the method "POST" is more suitable. Since, in this exampl
 
 9. Run the backend:
 ```shell
-   node index
+node index
 ```
 9. Reload Catalog Explorer:
 

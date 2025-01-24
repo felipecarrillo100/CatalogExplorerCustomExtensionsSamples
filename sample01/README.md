@@ -30,7 +30,7 @@ https://nodejs.org/en/download/current
 
    Once NodeJS is installed, install the “serve” package globally using npm:
 ```shell
-   npm install -g serve
+npm install -g serve
 ```
 4. Create a folder called sample01. Inside it, create another folder called public to store your custom
    extension:

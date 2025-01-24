@@ -74,11 +74,11 @@ new MiniCssExtractPlugin({
 3. Basic linting has also been configured (optional) `eslintrc.js`
 4. To run this project type
 ```shell
-   npm install
+npm install
 ```
 5. To run this project in development mode type
 ```shell
-   npm start
+npm start
 ```
 6. The webpack development server is configured to serve at localhost:5000, go to the Catalog Explorer
    administration dashboard and configure it to look for the custom extension at:
