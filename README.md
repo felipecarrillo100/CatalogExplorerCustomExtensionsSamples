@@ -110,11 +110,11 @@ https://sampleservices.luciad.com/wfs
 ```
    * c. Add a TMS Layer: 
 ```
-   https://{s}.tile.openstreetmap.org/{z}/{x}/{-y}.png
+https://{s}.tile.openstreetmap.org/{z}/{x}/{-y}.png
 ```    
    * Another example of TMS
 ```
-   https://{s}.api.tomtom.com/map/1/tile/basic/main/{z}/{x}/{-y}.png?key=A9R38rS8rPA6NS1ARfwn24mgEMlCCQ9k&tileSize=256
+https://{s}.api.tomtom.com/map/1/tile/basic/main/{z}/{x}/{-y}.png?key=A9R38rS8rPA6NS1ARfwn24mgEMlCCQ9k&tileSize=256
 ``` 
    For more info about the TomTom service, go to:
 
