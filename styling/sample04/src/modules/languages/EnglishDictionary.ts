@@ -3,6 +3,7 @@ import {Dictionary} from "../languageSettings";
 export const EnglishDictionary: Dictionary = {
    "en": {
        "main.webservicesLabel": {value: "My Company Data"},
+       "main.webservices.cs1": {value: "{country} datasets, {state}"},
        "main.navbarActionsLabel": {value: "My Awesome App"},
        "main.navbarActionsLabel.Colors": {value: "Colors"},
        "main.navbarActionsLabel.MyWorkspaces": {value: "My workspaces"},

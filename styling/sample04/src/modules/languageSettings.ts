@@ -32,9 +32,26 @@ export class LanguageSettings {
     }
 
     public static textByID(o:{id: string, defaultText?: string, values?:{[key:string]: string}}): string {
-        const defaultText = o.defaultText ? o.defaultText : "Missing Translation"
+        const defaultText = o.defaultText ? o.defaultText : "Missing Translation";
         // @ts-ignore
-        return this.dictionary[o.id].value ? this.dictionary[o.id].value : o.defaultText;
+        const translation: string = this.dictionary[o.id]?.value ? this.dictionary[o.id].value : o.defaultText
+        return this.replaceValues(translation, o.values ? o.values : {});
+    }
+
+    private static replaceValues(path: string, values: {[key:string]: string}):  string {
+        const escapeRegExp = (str:string) =>  str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const paramsPattern = /[^{}]+(?=})/g;
+        const extractParams = path.match(paramsPattern);
+        const myObject: {[key:string]: string} = {};
+        if (extractParams) {
+            for (const key of extractParams) myObject[key] = values[key] ? values[key]: "";
+            for (const key in myObject) {
+                if (myObject.hasOwnProperty(key)) {
+                    path = path.replace(new RegExp(escapeRegExp(`{${key}}`), 'g'), myObject[key]);
+                }
+            }
+        }
+        return path;
     }
 
     static register() {

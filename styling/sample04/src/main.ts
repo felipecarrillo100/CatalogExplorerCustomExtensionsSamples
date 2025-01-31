@@ -52,7 +52,7 @@ function recalculateCatex(): Catex {
             webservices: [
                 {
                     id: "cs1-id",
-                    label: "American datasets",
+                    label: LanguageSettings.textByID({id:"main.webservices.cs1", defaultText: "{country} datasets, {state}", values: {country:"America", "state": "New York"}}),
                     title: "A custom service that provides a list of assets",
                     action: function(o, callback) {
                         if (typeof callback === "function") {
