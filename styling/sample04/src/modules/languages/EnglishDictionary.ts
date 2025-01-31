@@ -1,17 +1,17 @@
-import {Dictionary} from "../languageSettings";
 
-export const EnglishDictionary: Dictionary = {
-   "en": {
+export const EnglishDictionary = {
        "main.webservicesLabel": {value: "My Company Data"},
        "main.webservices.cs1": {value: "{country} datasets, {state}"},
        "main.navbarActionsLabel": {value: "My Awesome App"},
        "main.navbarActionsLabel.Colors": {value: "Colors"},
+       "main.navbarActionsLabel.Colors.title": {value: "Just a sample of JSON Schema"},
        "main.navbarActionsLabel.MyWorkspaces": {value: "My workspaces"},
        "main.navbarActionsLabel.MyJSONSchemaForms": {value: "Formas en JSON Schema"},
        "main.navbarActionsLabel.OpenBio": {value: "Open Bio"},
 
        "main.navbarActionsLabel.ReactForms": {value: "Forms with ReactJS"},
        "main.navbarActionsLabel.ReactForms.SampleCharts": {value: "Example with charts"},
+       "main.navbarActionsLabel.ReactForms.SampleCharts.title": {value: "Una forma creada usando ReactJS"},
        "main.navbarActionsLabel.ReactForms.CreateCircle": {value: "create circle"},
        "main.navbarActionsLabel.ReactForms.CreateCircleWidget": {value: "Creat circle with Widget"},
 
@@ -27,10 +27,13 @@ export const EnglishDictionary: Dictionary = {
        "bioFormSchema.schema.description": {value:"A simple form example."},
        "bioFormSchema.schema.data.address": {value:"Address"},
        "bioFormSchema.schema.data.firstname": {value:"First name"},
+       "bioFormSchema.uiSchema.data.firstname": {value:"Make text **bold** or *italic*. Take a look at other options [here]({url})."},
        "bioFormSchema.schema.data.lastname": {value:"Last name"},
+       "bioFormSchema.uiSchema.data.lastName": {value:"Make text **bold** or *italic*."},
        "bioFormSchema.schema.data.age": {value:"Age"},
+       "bioFormSchema.uiSchema.data.age": {value:"(Earth years)"},
        "bioFormSchema.schema.data.bio": {value:"Bio"},
        "bioFormSchema.schema.data.password": {value:"Password"},
-       "bioFormSchema.schema.data.phone": {value:"Phone"},
-   }
+       "bioFormSchema.uiSchema.data.password": {value: "Hint: Make it strong!"},
+       "bioFormSchema.schema.data.phone": {value:"Phone"}
 }

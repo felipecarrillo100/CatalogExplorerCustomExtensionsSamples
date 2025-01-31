@@ -65,24 +65,30 @@ function bioFormSchema() {
                 "ui:placeholder": "ui:emptyValue causes this field to always be valid despite being required",
                 "ui:autocomplete": "family-name",
                 "ui:enableMarkdownInDescription": true,
-                "ui:description": "Make text **bold** or *italic*. Take a look at other options [here](https://markdown-to-jsx.quantizor.dev/)."
+                "ui:description": LanguageSettings.textByID({
+                    id:"bioFormSchema.uiSchema.data.firstname",
+                    defaultText:"Make text **bold** or *italic*. Take a look at other options [here]({url}).",
+                    values: {url: "https://markdown-to-jsx.quantizor.dev/"}
+                })
             },
             "lastName": {
                 "ui:autocomplete": "given-name",
                 "ui:enableMarkdownInDescription": true,
-                "ui:description": "Make things **bold** or *italic*. Embed snippets of `code`. <small>And this is a small texts.</small> "
+                "ui:description": LanguageSettings.textByID({
+                    id:"bioFormSchema.uiSchema.data.lastName"
+                })
             },
             "age": {
                 "ui:widget": "updown",
                 "ui:title": "Age of person",
-                "ui:description": "(earth year)"
+                "ui:description": LanguageSettings.textByID({id: "bioFormSchema.uiSchema.data.age", defaultText: "(earth year)"})
             },
             "bio": {
                 "ui:widget": "textarea"
             },
             "password": {
                 "ui:widget": "password",
-                "ui:help": "Hint: Make it strong!"
+                "ui:help":  LanguageSettings.textByID({id: "bioFormSchema.uiSchema.data.password", defaultText: "Hint: Make it strong!"})
             },
             "telephone": {
                 "ui:options": {

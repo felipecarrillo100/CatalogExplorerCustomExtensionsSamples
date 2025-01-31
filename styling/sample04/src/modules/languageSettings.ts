@@ -6,18 +6,18 @@ interface DictionaryEntry {
         value: string;
     };
 }
-export interface Dictionary {
-    [key:string]: DictionaryEntry;
-}
+
+export type MasterDictionary = typeof EnglishDictionary;
+export type MasterDictionaryKey = keyof MasterDictionary;
 
 interface Dictionaries {
-    [key:string]: Dictionary;
+    [key:string]: MasterDictionary;
 }
 
 export class LanguageSettings {
     private static language: string;
     private static availableDictionaries: Dictionaries;
-    private static dictionary: Dictionary;
+    private static dictionary: MasterDictionary;
     static setLanguage(s: string) {
         this.language = s;
         this.setDictionary(this.language)
@@ -31,7 +31,7 @@ export class LanguageSettings {
         this.dictionary = this.availableDictionaries[language];
     }
 
-    public static textByID(o:{id: string, defaultText?: string, values?:{[key:string]: string}}): string {
+    public static textByID(o:{id: MasterDictionaryKey, defaultText?: string, values?:{[key:string]: string}}): string {
         const defaultText = o.defaultText ? o.defaultText : "Missing Translation";
         // @ts-ignore
         const translation: string = this.dictionary[o.id]?.value ? this.dictionary[o.id].value : o.defaultText
@@ -56,10 +56,8 @@ export class LanguageSettings {
 
     static register() {
         // @ts-ignore
-        this.availableDictionaries = { ...EnglishDictionary, ...SpanishDictionary };
+        this.availableDictionaries = { "en": EnglishDictionary, "es": SpanishDictionary };
         this.setDictionary("en");
-
-        console.log(this.availableDictionaries);
     }
 }
 

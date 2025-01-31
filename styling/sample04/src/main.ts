@@ -66,7 +66,7 @@ function recalculateCatex(): Catex {
             navbarActions: [
                 {
                     label: LanguageSettings.textByID({id:"main.navbarActionsLabel.Colors"}),
-                    title: "Just a sample of JSON Schema",
+                    title: LanguageSettings.textByID({id:"main.navbarActionsLabel.Colors.title"}),
                     id: "id-action-colors",
                     action: (o, callback) => {
                         colorsForm()
@@ -104,12 +104,12 @@ function recalculateCatex(): Catex {
                 },
                 {
                     label: LanguageSettings.textByID({id:"main.navbarActionsLabel.ReactForms"}),
-                    title: "Just a sample of JSON Schema",
+                    title: "",
                     id: "id-form-sub2",
                     children:[
                         {
                             label: LanguageSettings.textByID({id:"main.navbarActionsLabel.ReactForms.SampleCharts"}),
-                            title: "Just a sample form with React",
+                            title: LanguageSettings.textByID({id:"main.navbarActionsLabel.ReactForms.SampleCharts.title"}),
                             id: "id-form-2",
                             action: (o, callback) => {
                                 openChartsForm()
