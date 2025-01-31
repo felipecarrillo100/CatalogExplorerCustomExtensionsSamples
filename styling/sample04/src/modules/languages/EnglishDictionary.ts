@@ -35,5 +35,9 @@ export const EnglishDictionary = {
        "bioFormSchema.schema.data.bio": {value:"Bio"},
        "bioFormSchema.schema.data.password": {value:"Password"},
        "bioFormSchema.uiSchema.data.password": {value: "Hint: Make it strong!"},
-       "bioFormSchema.schema.data.phone": {value:"Phone"}
+       "bioFormSchema.schema.data.phone": {value:"Phone"},
+
+       "SampleChartsForm.title": {value: "Charts from recharts"},
+       "SampleChartsForm.H4.title": {value: "Synchronized AreaCharts"},
+       "SampleChartsForm.p.title": {value: "Maybe some other content"}
 }

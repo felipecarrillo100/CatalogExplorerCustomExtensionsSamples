@@ -37,4 +37,8 @@ export const SpanishDictionary: MasterDictionary = {
         "bioFormSchema.schema.data.password": {value:"Contraseñas"},
         "bioFormSchema.uiSchema.data.password": {value: "Consejo: Usa un password seguro!"},
         "bioFormSchema.schema.data.phone": {value:"Telafono"},
+
+        "SampleChartsForm.title": {value: "Graficas de recharts"},
+        "SampleChartsForm.H4.title": {value: "Graficas de Area sincronizadas"},
+        "SampleChartsForm.p.title": {value: "Quizas otro contenido"}
 }

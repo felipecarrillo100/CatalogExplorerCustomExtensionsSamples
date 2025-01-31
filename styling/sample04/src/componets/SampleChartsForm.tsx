@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import {CreateCustomFormRenderHandlers} from "../interfaces/Catex";
 import {Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis} from "recharts";
 import ReactDOM from "react-dom/client";
+import {LanguageSettings} from "../modules/languageSettings";
 
 const data = [
     {
@@ -70,7 +71,7 @@ const SampleChartsForm : React.FC<Props> =(props) => {
 
     return (<>
         <div style={{ width: '100%' }}>
-            <h4>Synchronized AreaCharts</h4>
+            <h4>{LanguageSettings.textByID({id:"SampleChartsForm.H4.title", defaultText: "Synchronized AreaCharts"})}</h4>
             <ResponsiveContainer width="100%" height={200}>
                 <AreaChart
                     width={500}
@@ -91,7 +92,7 @@ const SampleChartsForm : React.FC<Props> =(props) => {
                     <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
                 </AreaChart>
             </ResponsiveContainer>
-            <p>Maybe some other content</p>
+            <p>{LanguageSettings.textByID({id:"SampleChartsForm.p.title", defaultText: "Maybe some other content"})}</p>
 
             <ResponsiveContainer width="100%" height={200}>
                 <AreaChart
@@ -122,6 +123,6 @@ export function openChartsForm() {
             const root = ReactDOM.createRoot(element);
             root.render(<SampleChartsForm handlers={handlers} />);
         },
-        {title: "Charts from recharts"}
+        {title: LanguageSettings.textByID({id:"SampleChartsForm.title", defaultText: "Charts from recharts"})}
     )
 }
