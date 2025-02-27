@@ -4,40 +4,36 @@
 This project provides a hands-on tutorial to develop Custom Extensions for Catalog Explorer.
 
 ## Scope
-These training exercises serve as an introduction to Custom Extensions, a feature of Catalog
-Explorer. With Custom Extensions, users can run personalized JavaScript code in response to events
-triggered within Catalog Explorer. This feature empowers users to expand Catalog Explorer's
-functionalities, such as integrating with external REST APIs or their own backend systems. 
+These training exercises provide an introduction to Custom Extensions, a feature of Catalog Explorer designed to enhance user capabilities. With Custom Extensions, users can execute personalized JavaScript code in response to events occurring within Catalog Explorer. This powerful feature enables users to extend the functionality of Catalog Explorer, facilitating integration with external REST APIs or proprietary backend systems.
 
-Throughout this course, you will acquire a comprehensive understanding of leveraging Custom Extensions to
-enhance the existing array of features within Catalog Explorer.
+Throughout this course, participants will gain a comprehensive understanding of how to effectively leverage Custom Extensions to augment the existing suite of features within Catalog Explorer.
 
 ### Target audience
-This training is aimed at the following:
+This training program is designed for the following audiences:
 
-* Developers that desire to add customized features to Catalog Explorer
-* Presales that wish to understand the capabilities provided by Custom Extensions
+* Developers seeking to incorporate customized features into Catalog Explorer.
+* Presales professionals aiming to gain a comprehensive understanding of the capabilities offered by Custom Extensions.
 
-NOTE: Main folder `sample00` to `sample12` focus on JavaScript development, while samples in `styling` folder focus on CSS styling.
+NOTE: Main folder `sample00` to `sample12` focus on JavaScript development, while samples in the `styling` folder focus on CSS styling and branding.
 
 
 ### Objectives
-By the conclusion of this training, you will have the ability to:
+By the end of this training, you will be able to:
 * Create a new custom extension.
 * Add new actions to the navigation bar.
 * Open layers programmatically.
-* Integrate with external APIs
+* Integrate with external APIs.
 * Connect to a custom backend.
 * Add custom forms.
-* Integrate development with Webpack and React
-* Apply custom styling witg CSS
+* Development Custom Extension with Webpack and React.
+* Apply custom styling with CSS.
 
 ## Installation
 
 To be able to execute this samples you will require a copy of Catalog Explorer. You can get a Docker version of Catalog Explorer or you can deploy it manually.
 
 ### Docker version 
-To run the docker version simply go to the folder containing the `docker-compose.yml` and type:
+To run the docker version, simply go to the folder containing the `docker-compose.yml` and type:
 
 ```shell
 docker compose up
@@ -87,8 +83,8 @@ options. To do this, add: `-Dfile.encoding=utf-8`
 
 ## Exploring Catalog Explorer
 
-In this training, we will begin by familiarizing ourselves with some of the key features of Catalog Explorer.
-To get started, please log in to Catalog Explorer using the following link in your web browser:
+In this training, we will start by familiarizing ourselves with some of the key features of Catalog Explorer. 
+To begin, please log in to Catalog Explorer using the following link in your web browser::
 
 http://localhost:8080/catalogexplorer
 
@@ -146,14 +142,14 @@ your preferences, and then click “Add layer” to incorporate the layer into t
 
 3. Save all your layers into a workspace.
 
-   Hint: Your account menu is situated in the top right corner. From there, navigate to Workspace ->
-   Save As, and provide a name and description for your workspace.
+   Hint: Your account menu is situated in the top right corner. From there, navigate to `Workspace` ->
+   `Save As`, and provide a name and description for your workspace.
 
 4. Go to the admin dashboard using the top right corner menu or use this URL:
 
    http://localhost:8080/catalogexplorer/admin
 
-   Set your Bing maps token from Settings->Gazetteer->Bing maps Key
+   Set your Bing maps token from `Settings`->`Third-Party Service Providers`->`Bing maps Key`
    Hint: You can learn more about how to acquire a Bing maps key at this website:
 
    https://learn.microsoft.com/en-us/bingmaps/getting-started/bing-maps-dev-center-help/getting-a-bing-maps-key
@@ -165,8 +161,10 @@ as follows:
 2. Within the application, you’ll find a navigation bar (navbar) and a workspace.
 3. The workspace houses a map.
 4. Within the map, there are various layers.
-   The Catalog Explorer user interface operates based on commands. Communication between different
-   elements occurs by sending commands, which are first directed to the Application, then to the
+
+
+The Catalog Explorer user interface operates based on commands. Communication between different
+elements occurs by sending commands, which are first directed to the Application, then to the
 
 Workspace, and finally to the Map. These commands can be triggered from the Navbar, a form, or
 programmatically from your custom extension.
