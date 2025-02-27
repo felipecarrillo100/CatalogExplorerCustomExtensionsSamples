@@ -1,14 +1,16 @@
-# CatalogExplorer Custom Extension with Webpack, Typescript and React
+# CatalogExplorer Custom Extension Multi-Language Support
 
-Language!!!
 
-This sample illustrates functionalities currently supported by Catalog Explorer Custom extension.
+
+*This sample illustrates functional*ities currently supported by Catalog Explorer Custom extension.
 
 Catalog Explorer Custom extension expects one Javascript file and one CSS file.  You can use webpack to bundle multiple files of multiple types, including images.
 
 This is useful when you have a large project that may consist of multiple files and 3rd party packages.
 
-This code is writen in Typescript but and it uses Webpack to bunbdle the source code to a Javascript file. 
+This code is writen in Typescript but and it uses Webpack to bunbdle the source code to a Javascript file.
+
+This example focuses on technique in which the multi-language support functionality can be integrated into Custom Extensions. 
 
 <strong>Note:</strong> Notice that in this example use use an image in png format. You can deal with this in several ways, for instance such image could be located on a external URL from which it is served.  However, if we want to serve such an application in our database without the need of external links it makes sense to bundle the image inside the javascript file.  For this we use the webpack loader url-loader that will load the image using import and encode it  in base64.
 ```javascript
