@@ -44,7 +44,7 @@ setCatex( {
                 label: "This feature is a point",
                 title: "Hint for single selected feature",
                 validate: (parameters)=>{
-                    const feature = parameters.features[0];
+                    const feature = parameters.feature;
                     const geoJSONFeature = window.catex.utils.featureToGeoJSON(feature);
                     return geoJSONFeature && geoJSONFeature.geometry.type === "Point";
                 },
@@ -115,7 +115,7 @@ setCatex( {
                 }
             },
             {
-                id: "cs1-id",
+                id: "cs2-id",
                 label: "Sample datasets 2",
                 title: "A custom service that provides a list of assets",
                 action: function(query, setResults) {

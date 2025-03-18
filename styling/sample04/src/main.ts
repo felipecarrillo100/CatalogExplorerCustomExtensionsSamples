@@ -34,6 +34,13 @@ function recalculateCatex(): Catex {
                 }
             },
             onAppReady: ()=> {
+                const dektopElement = document.querySelector(".Workspace-map-container");
+                if (dektopElement && dektopElement instanceof HTMLDivElement) {
+                    const div = document.createElement("div");
+                    div.innerHTML = `<h1>Hello world</h1`;
+                    dektopElement.appendChild(div);
+                }
+
                 const logoElement = document.querySelector("img.navbar-brandIcon");
                 if (logoElement && logoElement instanceof HTMLImageElement) {
                     logoElement.src = logo

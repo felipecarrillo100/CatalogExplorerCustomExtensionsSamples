@@ -21,7 +21,7 @@ export function localDatasetsUSA(query:CustomServiceQueryOptions):CustomWebServi
             title: "WFS service containing cities",
             type: CustomWebServiceEntryType.WFS,
             endpoint: "https://sampleservices.luciad.com/wfs",
-            layers: ["cities"],
+            layers: ["ns4:t_cities__c__1214"],
         },
         {
             id: "1.3",

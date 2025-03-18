@@ -3,7 +3,11 @@ import {CreateCustomFormRenderHandlers, PanelTarget, ToastMessageType} from "../
 export function openSampleJSForm() {
     window.catex.workspace.createCustomForm(MyVanillaForm, {
         title:"Calculate hypotenuse",
-        panel: PanelTarget.Left
+        panel: PanelTarget.Left,
+        buttons:  {
+            cancel: true,
+            submit: false
+        }
     })
 }
 

@@ -125,7 +125,7 @@ export interface NavBarEntryCustomSubMenu {
 interface MenuEntryFeatureSelect {
     label: string;
     title: string;
-    validate?: (parameters: {contextMenu: any, layer: any, features: any[]}) => boolean;
+    validate?: (parameters: {contextMenu: any, layer: any, feature: any}) => boolean;
     action: (parameters: {feature: any; model: any; layer: any;}, callback: (properties: {[key: string]: any})=>void) => void;
 }
 

@@ -125,7 +125,7 @@ export interface NavBarEntryCustomSubMenu {
 interface MenuEntryFeatureSelect {
     label: string;
     title: string;
-    validate?: (parameters: {contextMenu: any, layer: any, features: any[]}) => boolean;
+    validate?: (parameters: {contextMenu: any, layer: any, feature: any}) => boolean;
     action: (parameters: {feature: any; model: any; layer: any;}, callback: (properties: {[key: string]: any})=>void) => void;
 }
 
@@ -244,13 +244,13 @@ export interface LanguagesResponse {
 }
 
 export interface Catex {
-    rewire?: (catexObject: Catex)=>void;
+    rewire?: (catexObject: Catex)=>void; // Use this method in case you need to edit an existing catex object
     app?: {
         language?: {
-            setLanguage?: (languageL: string)=>void,
-            onChange?: (o:{la:string, rtl: boolean})=>void;
-            getList?: ()=>Promise<LanguagesResponse>;
-            filter?: (language: {name:string, localName: string, value: string})=>boolean;
+            onChange?: (o:{la:string, rtl: boolean})=>void; // Define this function in case you want to notified of a language change
+            setLanguage?: (languageL: string)=>void,  // Set the current language
+            getList?: ()=>Promise<LanguagesResponse>; // Interrogates the back end for a list of available languages
+            filter?: (language: {name:string, localName: string, value: string})=>boolean; // Filter return true if the language is allowed.
         },
         getUserInfo?:() => Promise<any>;
         onAppReady?: () => void;
