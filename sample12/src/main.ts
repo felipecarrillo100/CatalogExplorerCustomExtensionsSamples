@@ -112,14 +112,14 @@ setCatex({
                 }
             },
             {
-                label: "Set Current Layer",
+                label: "Set Annotations layer as Current",
                 title: "Set ID of current layer",
                 id: "id-form-a2",
                 action: (o, callback) => {
                     if (window.catex.map.setCurrentLayerByID("AnnotationsLayerId"))
-                        window.catex.workspace.toastMessage({message: "Annotations was selected", type: ToastMessageType.info});
+                        window.catex.workspace.toastMessage({message: "Annotations layer was selected", type: ToastMessageType.info});
                     else
-                        window.catex.workspace.toastMessage({message: "Annotations not found", type: ToastMessageType.warning});
+                        window.catex.workspace.toastMessage({message: "Annotations layer not found", type: ToastMessageType.warning});
                 }
             },
             {
