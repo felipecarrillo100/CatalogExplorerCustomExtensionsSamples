@@ -26,6 +26,49 @@ declare global {
     interface Window { catex: Catex; }
 }
 
+export enum CatexShapeType {
+    POINT = "POINT",
+    POLYLINE = "POLYLINE",
+    POLYGON = "POLYGON",
+    CIRCLE_BY_CENTER_POINT = "CIRCLE_BY_CENTER_POINT",
+    BOUNDS = "BOUNDS",
+}
+
+
+// Enum for control modes
+export enum CATEX_CONTROL_MODE_TYPE {
+    UNKNOWN = "UNKNOWN",
+    DefaultController = "DEFAULT_CONTROLLER",
+    Ruler2DController ="RULER_2D_CONTROLLER",
+    Ruler3DController = "RULER_3D_CONTROLLER",
+    PanoramaController = "PANORAMA_CONTROLLER",
+    SwipeController = "SWIPE_CONTROLLER",
+    CrossSectionController = "CROSS_SECTION_CONTROLLER",
+    FirstPersonNavigationController = "FIRST_PERSON_CONTROLLER",
+    SceneNavigationController = "SCENE_NAVIGATION_CONTROLLER",
+    OrbitNavigationController = "ORBIT_NAVIGATION_CONTROLLER",
+    SelectionController = "SELECTION_CONTROLLER",
+    CreateShapeController = "CREATE_SHAPE_CONTROLLER",
+    BoxSelectController = "BOX_SELECT_CONTROLLER",
+    BoxCreateController = "BOX_CREATE_CONTROLLER",
+    BoxResizeController = "BOX_RESIZE_CONTROLLER",
+}
+
+// Geometry Types currently supported
+interface CATEX_MAP_CONTROLLER_RESULT {
+    name: CATEX_CONTROL_MODE_TYPE;
+    shapeType?: CatexShapeType;
+}
+
+// Enum for UI events:
+export enum CATEX_EDIT_TOOLS_TYPE  {
+    Paste = "PASTE",
+    CountLoaded = "COUNT_LOADED",
+    CountSelected = "COUNT_SELECTED",
+    SelectAll = "SELECT_ALL",
+}
+
+
 // A CatexCompanionDataTransformer is used to convert data from one format to another.
 export interface CatexCompanionDataTransformer {
     name: string;
@@ -236,8 +279,22 @@ interface GeoJSONDecodeOptions {
     crs?: string;
     swapAxes?: boolean;
 }
+
+export interface LanguagesResponse {
+    name: string;
+    localName: string;
+    fileName: string;
+}
+
 export interface Catex {
+    rewire?: (catexObject: Catex)=>void; // Use this method in case you need to edit an existing catex object
     app?: {
+        language?: {
+            onChange?: (o:{la:string, rtl: boolean})=>void; // Define this function in case you want to notified of a language change
+            setLanguage?: (languageL: string)=>void,  // Set the current language
+            getList?: ()=>Promise<LanguagesResponse>; // Interrogates the back end for a list of available languages
+            filter?: (language: {name:string, localName: string, value: string})=>boolean; // Filter return true if the language is allowed.
+        },
         getUserInfo?:() => Promise<any>;
         onAppReady?: () => void;
         navbarActions?: NavBarEntryCustomActions[];
@@ -273,9 +330,12 @@ export interface Catex {
         onMapMove?: onMapMoveEvent[],
         onMousePoint?: onMousePointEvent[],
         getCurrentLayerID?: () => string;
+        setCurrentLayerByID?: (id: string) => boolean;
         getLayerByID?: (id:string) => any;
         onMainMapUpdated?(task:()=>void): string;
         offMainMapUpdated?(id: string): boolean;
+        onControllerChange?:()=>void;
+        getController?(): CATEX_MAP_CONTROLLER_RESULT;
     };
     utils?: {
         boundingBox: (shape: any) => number[];
