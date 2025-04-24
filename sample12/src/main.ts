@@ -11,6 +11,7 @@ import {openCreateCircleForm} from "./componets/CreateCircleForm";
 import {openCreateCircleWidgetForm} from "./componets/CreateCircleWidgetForm";
 import {openReactWindow} from "./componets/SampleReactWindow";
 import {openListFeatureWindow} from "./componets/ListFearturesWindow";
+import {RestoreWorkspaceBelgianFactoryCommand} from "./modules/workspaceopen";
 
 
 const AvailableActions = Object.keys(CATEX_EDIT_TOOLS_TYPE)
@@ -39,6 +40,12 @@ setCatex({
         },
     },
     app: {
+        onAppReady: ()=> {
+            window.catex.workspace.toastMessage({message:"App is ready", type:ToastMessageType.info});
+            if (typeof window.catex.workspace.emitCommand!=="undefined") {
+                window.catex.workspace.emitCommand(RestoreWorkspaceBelgianFactoryCommand());
+            }
+        },
         navbarActions: [
             {
                 label: "Control Modes",
